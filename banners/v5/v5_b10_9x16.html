@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { width:1080px; height:1920px; overflow:hidden; background:#050E22; }
+.canvas { position:relative; width:1080px; height:1920px; background:#050E22; font-family:'Inter',sans-serif; overflow:hidden; }
+.display { font-family:'Playfair Display',serif; font-weight:800; letter-spacing:-.01em; }
+</style></head><body>
+<style>
+
+.cta { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg,#3A8DFF 0%,#006EFF 100%); color:#fff; font-weight:800; border-radius:999px; border:1.5px solid rgba(255,255,255,.55); box-shadow:0 8px 28px rgba(0,110,255,.55), inset 0 1px 0 rgba(255,255,255,.35); white-space:nowrap; font-family:'Inter',sans-serif; }
+
+.trust { display:flex; align-items:center; gap:10px; color:rgba(255,255,255,.85); font-weight:600; }
+.trust img.tpl { display:block; } .trust img.tps { display:block; }
+
+.top { position:absolute; left:58px; right:58px; top:50px; z-index:10; }
+.headline { font-size:64px; color:#FFFFFF; line-height:1.1; text-align:center; margin-top:26px; }
+.split { position:absolute; left:0; right:0; top:306px; bottom:200px; display:flex; flex-direction:column; }
+.side { position:relative; flex:1; overflow:hidden; }
+.side img { width:100%; height:100%; object-fit:cover; }
+.side.julie img { object-position:52% 20%; }
+.side.bryan img { object-position:50% 55%; filter:grayscale(0.45) brightness(0.85); }
+.tag { position:absolute; left:32px; top:32px; padding:10px 21px; border-radius:999px; font-weight:800; font-size:20px; letter-spacing:.02em; z-index:5; }
+.tag.julie { background:#006EFF; color:#fff; }
+.tag.bryan { background:rgba(255,255,255,.18); color:#fff; border:1px solid rgba(255,255,255,.4); }
+.statpanel { position:absolute; left:0; right:0; bottom:0; padding:29px 32px; z-index:5; }
+.side.julie .statpanel { background:linear-gradient(180deg, transparent, rgba(3,14,40,.96) 55%); }
+.side.bryan .statpanel { background:linear-gradient(180deg, transparent, rgba(10,10,12,.96) 55%); }
+.bigstat { font-family:'Playfair Display',serif; font-weight:800; font-size:61px; color:#fff; line-height:1; }
+.bigstat span { font-family:'Inter',sans-serif; font-size:20px; font-weight:700; color:rgba(255,255,255,.75); margin-left:10px; }
+.statlabel { font-size:17px; color:#7EC8FF; font-weight:700; margin-top:5px; }
+.side.bryan .statlabel { color:rgba(255,255,255,.55); }
+.bullets { margin-top:18px; display:flex; flex-direction:column; gap:9px; }
+.bullets div { font-size:20px; color:rgba(255,255,255,.92); font-weight:600; }
+.side.bryan .bullets div { color:rgba(255,255,255,.65); }
+.bar { position:absolute; left:0; right:0; bottom:0; height:200px; background:#03102A; border-top:1px solid rgba(126,200,255,.28); display:flex; align-items:center; justify-content:space-between; padding:0 53px; z-index:20; gap:21px; }
+</style>
+<div class="canvas">
+  <div class="top">
+    
+<div class="brandlock" style="display:flex; align-items:center; justify-content:center; gap:21px;">
+  <img src="../../assets/lla_logo_mark.png" style="height:69px; display:block; flex-shrink:0;">
+  <div style="display:flex; flex-direction:column; line-height:1;">
+    <div style="font-family:'Playfair Display',serif; font-weight:800; font-size:48px; color:#FFFFFF; letter-spacing:.005em;">
+      <span style="color:#7EC8FF;">Longevity</span> Life Academy
+    </div>
+    <div style="font-size:16px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.62); margin-top:8px;">by eTeacher Group</div>
+  </div>
+</div>
+    <div class="display headline">She Ages Slower Than Bryan Johnson. For $289/mo.</div>
+  </div>
+  <div class="split">
+    <div class="side julie">
+      <img src="../../assets/real_julie-standing-hd.jpg">
+      <div class="tag julie">JULIE GIBSON CLARK</div>
+      <div class="statpanel">
+        <div class="bigstat">#2 <span>slowest aging person on Earth</span></div>
+        <div class="statlabel">Rejuvenation Olympics &middot; DunedinPACE 0.665</div>
+        <div class="bullets">
+          <div>&#10003; Full personalized longevity protocol</div>
+          <div>&#10003; Sleep, nutrition &amp; daily movement blueprint</div>
+          <div>&#10003; Continuous glucose &amp; biomarker tracking</div>
+          <div>&#10003; Live coaching across 18 sessions</div>
+        </div>
+      </div>
+    </div>
+    <div class="side bryan">
+      <img src="../../assets/bryan_johnson.jpg">
+      <div class="tag bryan">BRYAN JOHNSON</div>
+      <div class="statpanel">
+        <div class="bigstat">$2M <span>spent per year</span></div>
+        <div class="statlabel">Ranked below Julie on the same leaderboard</div>
+        <div class="bullets">
+          <div>&mdash; 100+ supplements, every single day</div>
+          <div>&mdash; A 30-person medical team on payroll</div>
+          <div>&mdash; Hundreds of tests &amp; experimental therapies</div>
+          <div>&mdash; A full-time job just to keep up</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bar">
+    <div style="color:#fff; font-weight:700; font-size:20px;">Tuition from <span style="color:#7EC8FF;">$289/mo</span> &mdash; not $2M/year</div>
+    <span class="cta" style="font-size:31px; padding:25px 53px;">Enroll Now <span>&rarr;</span></span>
+  </div>
+</div></body></html>

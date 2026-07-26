@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { width:1080px; height:1920px; overflow:hidden; background:#050E22; }
+.canvas { position:relative; width:1080px; height:1920px; background:#050E22; font-family:'Inter',sans-serif; overflow:hidden; }
+.display { font-family:'Playfair Display',serif; font-weight:800; letter-spacing:-.01em; }
+</style></head><body>
+<style>
+
+.cta { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg,#3A8DFF 0%,#006EFF 100%); color:#fff; font-weight:800; border-radius:999px; border:1.5px solid rgba(255,255,255,.55); box-shadow:0 8px 28px rgba(0,110,255,.55), inset 0 1px 0 rgba(255,255,255,.35); white-space:nowrap; font-family:'Inter',sans-serif; }
+
+.trust { display:flex; align-items:center; gap:10px; color:rgba(255,255,255,.85); font-weight:600; }
+.trust img.tpl { display:block; } .trust img.tps { display:block; }
+
+.photobox { position:absolute; inset:0; overflow:hidden; }
+.photobox img { width:100%; height:100%; object-fit:cover; object-position:52% 10%; }
+.scrimtop { position:absolute; left:0; right:0; top:0; height:40%; background:linear-gradient(180deg, rgba(5,14,34,.55) 0%, transparent 100%); }
+.card { position:absolute; left:74px; right:74px; bottom:58px; background:rgba(5,14,34,.90); border:1.5px solid rgba(126,200,255,.4); border-radius:29px; padding:58px; backdrop-filter:blur(6px); z-index:10; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+.headline { font-size:88px; color:#FFFFFF; line-height:1.08; margin:29px 0 26px 0; }
+.footrow { display:flex; align-items:center; justify-content:space-between; margin-top:29px; padding-top:26px; border-top:1px solid rgba(126,200,255,.2); gap:21px; flex-wrap:wrap; }
+</style>
+<div class="canvas">
+  <div class="photobox"><img src="../../assets/real_julie-standing-hd.jpg"></div>
+  <div class="scrimtop"></div>
+  <div class="card">
+    
+<div class="brandlock" style="display:flex; align-items:center; justify-content:flex-start; gap:21px;">
+  <img src="../../assets/lla_logo_mark.png" style="height:77px; display:block; flex-shrink:0;">
+  <div style="display:flex; flex-direction:column; line-height:1;">
+    <div style="font-family:'Playfair Display',serif; font-weight:800; font-size:53px; color:#FFFFFF; letter-spacing:.005em;">
+      <span style="color:#7EC8FF;">Longevity</span> Life Academy
+    </div>
+    <div style="font-size:18px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.62); margin-top:8px;">by eTeacher Group</div>
+  </div>
+</div>
+    <div class="display headline">Aging is a habit.<br>Change it.</div>
+    
+<div style="display:flex; flex-direction:column; align-items:flex-start; text-align:left; gap:5px;">
+  <div style="font-weight:800; font-size:29px; color:#FFFFFF;">Julie Gibson Clark</div>
+  <div style="font-weight:600; font-size:20px; color:#7EC8FF; letter-spacing:.01em;">2nd Slowest-Aging Person on Earth · Longevity Life Academy Instructor</div>
+</div>
+    <div class="footrow">
+      <div class="trust" style="font-size:15px;"><img class="tpl" src="../../assets/tp_logo-white.svg" style="height:20px;"><img class="tps" src="../../assets/tp_stars-5.svg" style="height:17px;"><span>4.6/5 &middot; 600+ verified reviews</span></div>
+      <span class="cta" style="font-size:31px; padding:25px 53px;">Join the Next Cohort <span>&rarr;</span></span>
+    </div>
+  </div>
+</div></body></html>
