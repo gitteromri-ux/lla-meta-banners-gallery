@@ -1624,5 +1624,397 @@
         }
       }
     }
+  ],
+  "v7": [
+    {
+      "id": "v7_b1",
+      "title": "Age Slower Starting With Your Habits",
+      "layout": "signature",
+      "sizes": {
+        "1x1": {
+          "html": "v7_b1_1x1.html",
+          "png": "v7_b1_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "v7_b1_4x5.html",
+          "png": "v7_b1_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "v7_b1_9x16.html",
+          "png": "v7_b1_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "v7_b1_191x1.html",
+          "png": "v7_b1_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    },
+    {
+      "id": "v7_b2",
+      "title": "The Science Of Aging Slower",
+      "layout": "signature",
+      "sizes": {
+        "1x1": {
+          "html": "v7_b2_1x1.html",
+          "png": "v7_b2_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "v7_b2_4x5.html",
+          "png": "v7_b2_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "v7_b2_9x16.html",
+          "png": "v7_b2_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "v7_b2_191x1.html",
+          "png": "v7_b2_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    },
+    {
+      "id": "v7_b3",
+      "title": "Small Habits Slower Aging",
+      "layout": "signature",
+      "sizes": {
+        "1x1": {
+          "html": "v7_b3_1x1.html",
+          "png": "v7_b3_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "v7_b3_4x5.html",
+          "png": "v7_b3_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "v7_b3_9x16.html",
+          "png": "v7_b3_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "v7_b3_191x1.html",
+          "png": "v7_b3_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    },
+    {
+      "id": "v7_b4",
+      "title": "Add Healthy Years To Your Life",
+      "layout": "signature",
+      "sizes": {
+        "1x1": {
+          "html": "v7_b4_1x1.html",
+          "png": "v7_b4_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "v7_b4_4x5.html",
+          "png": "v7_b4_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "v7_b4_9x16.html",
+          "png": "v7_b4_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "v7_b4_191x1.html",
+          "png": "v7_b4_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    },
+    {
+      "id": "v7_b5",
+      "title": "Live Long Live Strong Be There",
+      "layout": "signature",
+      "sizes": {
+        "1x1": {
+          "html": "v7_b5_1x1.html",
+          "png": "v7_b5_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "v7_b5_4x5.html",
+          "png": "v7_b5_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "v7_b5_9x16.html",
+          "png": "v7_b5_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "v7_b5_191x1.html",
+          "png": "v7_b5_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    },
+    {
+      "id": "v7_b6",
+      "title": "Slow Your Biological Age",
+      "layout": "signature",
+      "sizes": {
+        "1x1": {
+          "html": "v7_b6_1x1.html",
+          "png": "v7_b6_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "v7_b6_4x5.html",
+          "png": "v7_b6_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "v7_b6_9x16.html",
+          "png": "v7_b6_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "v7_b6_191x1.html",
+          "png": "v7_b6_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    },
+    {
+      "id": "v7_b7",
+      "title": "The Habits That Slow Aging",
+      "layout": "masthead",
+      "sizes": {
+        "1x1": {
+          "html": "v7_b7_1x1.html",
+          "png": "v7_b7_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "v7_b7_4x5.html",
+          "png": "v7_b7_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "v7_b7_9x16.html",
+          "png": "v7_b7_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "v7_b7_191x1.html",
+          "png": "v7_b7_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    },
+    {
+      "id": "v7_b8",
+      "title": "More Years More Strength More You",
+      "layout": "splitpanel",
+      "sizes": {
+        "1x1": {
+          "html": "v7_b8_1x1.html",
+          "png": "v7_b8_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "v7_b8_4x5.html",
+          "png": "v7_b8_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "v7_b8_9x16.html",
+          "png": "v7_b8_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "v7_b8_191x1.html",
+          "png": "v7_b8_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    },
+    {
+      "id": "v7_b9",
+      "title": "Aging Is A Habit Change It",
+      "layout": "statementcard",
+      "sizes": {
+        "1x1": {
+          "html": "v7_b9_1x1.html",
+          "png": "v7_b9_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "v7_b9_4x5.html",
+          "png": "v7_b9_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "v7_b9_9x16.html",
+          "png": "v7_b9_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "v7_b9_191x1.html",
+          "png": "v7_b9_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    },
+    {
+      "id": "v7_b10",
+      "title": "Julie vs Bryan Johnson",
+      "layout": "versus",
+      "sizes": {
+        "1x1": {
+          "html": "v7_b10_1x1.html",
+          "png": "v7_b10_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "v7_b10_4x5.html",
+          "png": "v7_b10_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "v7_b10_9x16.html",
+          "png": "v7_b10_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "v7_b10_191x1.html",
+          "png": "v7_b10_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    }
   ]
 }
