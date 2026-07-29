@@ -51,23 +51,39 @@ def scale_for(w, h):
     ratio = w / h
     return s, ratio
 
+# FIX: clean icon-only mark top-left (no smeared dark logo text on light photos)
 def brand_lockup(s, scale_mult=1.0):
-    logo_h = int(150 * s * scale_mult)
+    logo_h = int(110 * s * scale_mult)
     return f"""
 <div class="brandlock" style="display:flex; align-items:center; justify-content:flex-start;">
-  <img src="{ASSETS}/lla_logo.png" style="height:{logo_h}px; display:block; filter:drop-shadow(0 2px 10px rgba(0,0,0,.35));">
+  <img src="{ASSETS}/lla_logo_mark_icon.png" style="height:{logo_h}px; display:block; filter:drop-shadow(0 3px 14px rgba(0,0,0,.55));">
 </div>"""
 
-# FIX: "2nd Slowest-Aging Person on Earth" enlarged — now nearly name-size, bold.
-def julie_credential(s, size_mult=1.0):
-    name_size = max(16, int(24 * s * size_mult))
-    cred_size = max(15, int(21 * s * size_mult))   # was 16 — enlarged, clearly visible
-    tag_size  = max(12, int(16 * s * size_mult))
+# NEW: large text brand lockup above the headline — exactly like the website
+# homepage fold, but "Longevity Life Academy" in ONE line.
+def brand_text_lockup(s, is_landscape=False):
+    lla_size = int((52 if is_landscape else 58) * s)
+    by_size  = max(13, int(lla_size * 0.40))
+    grp_size = max(11, int(by_size * 0.78))
+    gap = max(4, int(8*s))
     return f"""
-<div style="display:flex; flex-direction:column; align-items:flex-start; text-align:left; gap:{max(3,int(5*s))}px;">
-  <div style="font-weight:800; font-size:{name_size}px; color:{WHITE};">Julie Gibson Clark</div>
-  <div style="font-weight:800; font-size:{cred_size}px; color:{BLUE_LT}; letter-spacing:.01em; line-height:1.3;">2nd Slowest-Aging Person on Earth</div>
-  <div style="font-weight:600; font-size:{tag_size}px; color:{BLUE_LT}; letter-spacing:.01em; line-height:1.35;">Longevity Life Academy Instructor</div>
+<div style="display:flex; flex-direction:column; align-items:flex-start; gap:{gap}px; margin-bottom:{int(26*s)}px;">
+  <div style="font-family:'Playfair Display',serif; font-weight:600; font-size:{lla_size}px; line-height:1; letter-spacing:.005em; white-space:nowrap; text-shadow:0 4px 24px rgba(0,0,0,.65);"><span style="color:#8FC7F2;">Longevity</span> <span style="color:#FFFFFF;">Life Academy</span></div>
+  <div style="font-size:{by_size}px; line-height:1; text-shadow:0 2px 12px rgba(0,0,0,.6);"><span style="font-family:'Playfair Display',serif; font-style:italic; font-weight:600; color:rgba(255,255,255,.9);">by</span> <span style="font-family:'Inter',sans-serif; font-weight:800; color:#4B9BFF; letter-spacing:.01em;">eTeacher</span> <span style="font-family:'Playfair Display',serif; font-style:italic; font-weight:500; font-size:{grp_size}px; color:rgba(255,255,255,.85);">Group</span></div>
+</div>"""
+
+# FIX: Julie's block MUCH larger — credential WAY larger, in NEON, it must stick out.
+NEON = "#6FF3FF"
+NEON_GLOW = "0 0 6px rgba(111,243,255,.95), 0 0 16px rgba(77,225,255,.85), 0 0 34px rgba(0,190,255,.7), 0 0 70px rgba(0,150,255,.55)"
+def julie_credential(s, size_mult=1.0):
+    name_size = max(18, int(32 * s * size_mult))
+    cred_size = max(20, int(38 * s * size_mult))   # WAY larger than before, neon
+    tag_size  = max(15, int(24 * s * size_mult))
+    return f"""
+<div style="display:flex; flex-direction:column; align-items:flex-start; text-align:left; gap:{max(4,int(7*s))}px;">
+  <div style="font-weight:800; font-size:{name_size}px; color:{WHITE}; text-shadow:0 3px 16px rgba(0,0,0,.6);">Julie Gibson Clark</div>
+  <div style="font-weight:900; font-size:{cred_size}px; color:{NEON}; letter-spacing:.01em; line-height:1.15; white-space:nowrap; text-shadow:{NEON_GLOW};">2nd Slowest-Aging Person on Earth</div>
+  <div style="font-weight:700; font-size:{tag_size}px; color:{BLUE_LT}; letter-spacing:.01em; line-height:1.3; text-shadow:0 2px 12px rgba(0,0,0,.55);">Longevity Life Academy Instructor</div>
 </div>"""
 
 def cta_button(s, text="Enroll Now", size_mult=1.0):
@@ -140,8 +156,9 @@ def render_signature(b, w, h):
   <div class="content">
     <div class="brandwrap">{brand_lockup(s, scale_mult=brand_scale)}</div>
     <div class="midspace"></div>
+    {brand_text_lockup(s, is_landscape=is_landscape)}
     <div class="display headline">{b['headline']}</div>
-    <div class="credential-block">{julie_credential(s, size_mult=(0.95 if is_landscape else 1.05))}</div>
+    <div class="credential-block">{julie_credential(s, size_mult=(0.95 if is_landscape else 1.0))}</div>
     <div class="cta-row">
       {trust_row(s, size_mult=1.0)}
       {cta_button(s, b.get('cta','Enroll Now'))}
