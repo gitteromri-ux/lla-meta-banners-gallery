@@ -73,8 +73,8 @@ def brand_text_lockup(s, is_landscape=False):
 </div>"""
 
 # FIX: Julie's block MUCH larger — credential WAY larger, in NEON, it must stick out.
-NEON = "#6FF3FF"
-NEON_GLOW = "0 0 6px rgba(111,243,255,.95), 0 0 16px rgba(77,225,255,.85), 0 0 34px rgba(0,190,255,.7), 0 0 70px rgba(0,150,255,.55)"
+NEON = "#7EC8FF"
+NEON_GLOW = "0 2px 16px rgba(0,0,0,.55)"
 def julie_credential(s, size_mult=1.0):
     name_size = max(18, int(32 * s * size_mult))
     cred_size = max(20, int(38 * s * size_mult))   # WAY larger than before, neon
