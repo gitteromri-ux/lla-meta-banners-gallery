@@ -2016,5 +2016,241 @@
         }
       }
     }
+  ],
+  "chosen": [
+    {
+      "id": "chosen_b1",
+      "title": "Repeat It Until It's Automatic",
+      "layout": "signature",
+      "sizes": {
+        "1x1": {
+          "html": "chosen_b1_1x1.html",
+          "png": "chosen_b1_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "chosen_b1_4x5.html",
+          "png": "chosen_b1_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "chosen_b1_9x16.html",
+          "png": "chosen_b1_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "chosen_b1_191x1.html",
+          "png": "chosen_b1_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    },
+    {
+      "id": "chosen_b2",
+      "title": "Age Slower, Be There Longer",
+      "layout": "signature",
+      "sizes": {
+        "1x1": {
+          "html": "chosen_b2_1x1.html",
+          "png": "chosen_b2_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "chosen_b2_4x5.html",
+          "png": "chosen_b2_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "chosen_b2_9x16.html",
+          "png": "chosen_b2_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "chosen_b2_191x1.html",
+          "png": "chosen_b2_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    },
+    {
+      "id": "chosen_b3",
+      "title": "Eight Months per Year",
+      "layout": "signature",
+      "sizes": {
+        "1x1": {
+          "html": "chosen_b3_1x1.html",
+          "png": "chosen_b3_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "chosen_b3_4x5.html",
+          "png": "chosen_b3_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "chosen_b3_9x16.html",
+          "png": "chosen_b3_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "chosen_b3_191x1.html",
+          "png": "chosen_b3_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    },
+    {
+      "id": "chosen_b4",
+      "title": "Learn to Age a Third Slower",
+      "layout": "signature",
+      "sizes": {
+        "1x1": {
+          "html": "chosen_b4_1x1.html",
+          "png": "chosen_b4_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "chosen_b4_4x5.html",
+          "png": "chosen_b4_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "chosen_b4_9x16.html",
+          "png": "chosen_b4_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "chosen_b4_191x1.html",
+          "png": "chosen_b4_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    },
+    {
+      "id": "chosen_b5",
+      "title": "Slow Your Pace of Aging",
+      "layout": "signature",
+      "sizes": {
+        "1x1": {
+          "html": "chosen_b5_1x1.html",
+          "png": "chosen_b5_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "chosen_b5_4x5.html",
+          "png": "chosen_b5_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "chosen_b5_9x16.html",
+          "png": "chosen_b5_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "chosen_b5_191x1.html",
+          "png": "chosen_b5_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    },
+    {
+      "id": "chosen_b6",
+      "title": "World's #2 Slowest Ager",
+      "layout": "signature",
+      "sizes": {
+        "1x1": {
+          "html": "chosen_b6_1x1.html",
+          "png": "chosen_b6_1x1.png",
+          "w": 1080,
+          "h": 1080,
+          "label": "1:1 Feed",
+          "note": "Instagram Post / FB Feed Square"
+        },
+        "4x5": {
+          "html": "chosen_b6_4x5.html",
+          "png": "chosen_b6_4x5.png",
+          "w": 1080,
+          "h": 1350,
+          "label": "4:5 Vertical",
+          "note": "Instagram / FB Feed Vertical"
+        },
+        "9x16": {
+          "html": "chosen_b6_9x16.html",
+          "png": "chosen_b6_9x16.png",
+          "w": 1080,
+          "h": 1920,
+          "label": "9:16 Story",
+          "note": "IG Stories, Reels, FB Stories"
+        },
+        "191x1": {
+          "html": "chosen_b6_191x1.html",
+          "png": "chosen_b6_191x1.png",
+          "w": 1200,
+          "h": 628,
+          "label": "1.91:1 Link",
+          "note": "FB Link Ad / Marketplace"
+        }
+      }
+    }
   ]
 }
