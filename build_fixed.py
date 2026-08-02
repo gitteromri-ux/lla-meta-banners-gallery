@@ -384,13 +384,12 @@ def render_versus(b, size_key, w, h):
     if bar_landscape:
         bar_inner = (f'<div style="display:flex; flex-direction:column; gap:{int(10*s)}px;">'
                      f'<div style="font-weight:700; font-size:{fact_fs}px; color:{GLOW}; {GLOW_SHADOW}">{FACT_COURSE}</div>'
-                     f'{trust_row(s, mult=0.82)}</div>'
-                     f'{cta_button(s, b.get("cta","Enroll Now"), mult=0.78)}')
+                     f'{trust_row(s, mult=0.82)}</div>')
         bar_flex = "flex-direction:row; align-items:center; justify-content:space-between;"
     else:
         bar_inner = (f'<div style="font-weight:700; font-size:{fact_fs}px; color:{GLOW}; {GLOW_SHADOW}">{FACT_COURSE}</div>'
                      f'<div style="display:flex; align-items:center; justify-content:space-between; width:100%; gap:{int(16*s)}px;">'
-                     f'{trust_row(s, mult=0.9)}{cta_button(s, b.get("cta","Enroll Now"), mult=0.85)}</div>')
+                     f'{trust_row(s, mult=0.9)}</div>')
         bar_flex = "flex-direction:column; align-items:flex-start; justify-content:center;"
 
     return f"""{html_head(w,h)}
@@ -416,7 +415,7 @@ def render_versus(b, size_key, w, h):
 </style>
 <div class="canvas">
   <div class="top">
-    {brand_lockup(s, align="center", scale_mult=0.9)}
+    <div style="display:flex; justify-content:center;">{site_lockup2(int(44*s))}</div>
     <div class="display headline">She Beats Bryan Johnson.<br><span style="font-style:italic; font-weight:500; color:#b9d4f2;">For $289/mo.</span></div>
   </div>
   <div class="split">

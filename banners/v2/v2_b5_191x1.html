@@ -1,54 +1,35 @@
 <!DOCTYPE html>
 <html><head><meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-html,body { width:1200px; height:628px; overflow:hidden; background:#050E22; }
-.canvas { position:relative; width:1200px; height:628px; background:#050E22; font-family:'Inter',sans-serif; overflow:hidden; }
-.display { font-family:'Playfair Display',serif; font-weight:800; letter-spacing:-.01em; }
+html,body { width:1200px; height:628px; overflow:hidden; background:#060b20; -webkit-font-smoothing:antialiased; }
+.canvas { position:relative; width:1200px; height:628px; background:#060b20; font-family:'Inter',sans-serif; overflow:hidden; }
+.display { font-family:'EB Garamond',serif; font-weight:600; letter-spacing:-.012em; }
 </style></head><body>
 <style>
 
-.cta { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg,#3A8DFF 0%,#006EFF 100%); color:#fff; font-weight:800; border-radius:999px; border:1.5px solid rgba(255,255,255,.55); box-shadow:0 8px 28px rgba(0,110,255,.55), inset 0 1px 0 rgba(255,255,255,.35); white-space:nowrap; font-family:'Inter',sans-serif; }
+@font-face { font-family:'Codec Pro'; src:url('../../assets/CodecPro-Regular.woff') format('woff'); font-weight:400; font-style:normal; }
+@font-face { font-family:'Codec Pro'; src:url('../../assets/CodecPro-Bold.ttf') format('truetype'); font-weight:700; font-style:normal; }
+@font-face { font-family:'Codec Pro'; src:url('../../assets/CodecPro-ExtraBold.ttf') format('truetype'); font-weight:800; font-style:normal; }
+@font-face { font-family:'Codec Pro'; src:url('../../assets/CodecPro-Heavy.ttf') format('truetype'); font-weight:900; font-style:normal; }
 
-.trust { display:flex; align-items:center; color:rgba(255,255,255,.9); font-weight:600; }
-.trust img { display:block; }
-
-.photobox { position:absolute; inset:0; overflow:hidden; z-index:1; background:#050E22; }
-.photobox img { width:100%; height:100%; object-fit:cover; object-position:52% 18%; }
-.scrim { position:absolute; inset:0; background:linear-gradient(90deg, rgba(3,10,28,.94) 0%, rgba(3,10,28,.88) 40%, rgba(3,10,28,.55) 58%, rgba(3,10,28,.15) 78%, rgba(3,10,28,0) 100%); z-index:2; }
-.topscrim { position:absolute; left:0; right:0; top:0; height:192px; background:linear-gradient(180deg, rgba(3,10,28,.78) 0%, rgba(3,10,28,.5) 40%, rgba(3,10,28,.15) 75%, rgba(3,10,28,0) 100%); z-index:3; pointer-events:none; }
-.content { position:absolute; left:38px; width:720px; top:27px; bottom:27px; display:flex; flex-direction:column; z-index:5; }
-.brandwrap { flex-shrink:0; }
-.midspace { flex:1; }
-.headline { font-size:40px; color:#FFFFFF; line-height:1.02; text-shadow:0 6px 40px rgba(0,0,0,.75); margin:0 0 16px 0; letter-spacing:-.015em; }
-.credential-block { margin-bottom:11px; }
-.courseinfo { margin-bottom:17px; }
-.cta-row { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
-.trust { background:transparent; padding:0; border:none; box-shadow:none; }
+.canvas { display:flex; flex-direction:row; position:relative; }
+.textpanel { width:660px; height:628px; flex-shrink:0; position:relative; z-index:5;
+  background:radial-gradient(120% 90% at 8% 6%, rgba(0,110,255,.16) 0%, rgba(0,110,255,0) 55%),radial-gradient(100% 80% at 90% 100%, rgba(0,60,160,.12) 0%, rgba(0,60,160,0) 60%),linear-gradient(160deg, #0a1430 0%, #060b20 55%, #04081a 100%);
+  padding:0 33px; display:flex; flex-direction:column; justify-content:center; }
+.photopanel { position:relative; flex:1; height:628px; overflow:hidden; background:#060b20; }
+.photopanel img { width:100%; height:100%; object-fit:cover; object-position:52% 18%; display:block; filter:saturate(1.06) contrast(1.04) brightness(.99); }
+.photopanel .blend { position:absolute; inset:0; background:linear-gradient(90deg, #060b20 0%, rgba(6,11,32,.45) 12%, rgba(6,11,32,0) 30%), radial-gradient(140% 60% at 50% 118%, rgba(4,9,26,.55) 0%, rgba(4,9,26,0) 55%); pointer-events:none; }
 </style>
 <div class="canvas">
-  <div class="photobox"><img src="../../assets/real_julie-standing-hd.jpg"></div>
-  <div class="scrim"></div>
-  <div class="topscrim"></div>
-  <div class="content">
-    <div class="brandwrap">
-<div class="brandlock" style="display:flex; align-items:center; justify-content:flex-start;">
-  <img src="../../assets/lla_logo.png" style="height:86px; display:block; filter:drop-shadow(0 2px 10px rgba(0,0,0,.35));">
-</div></div>
-    <div class="midspace"></div>
-    <div class="display headline">It&rsquo;s not the years.<br>It&rsquo;s being there.</div>
-    <div class="credential-block">
-<div style="display:flex; flex-direction:column; align-items:flex-start; text-align:left; gap:4px;">
-  <div style="font-weight:800; font-size:19px; color:#FFFFFF; text-shadow:0 2px 14px rgba(0,0,0,.6);">Julie Gibson Clark</div>
-  <div style="font-weight:800; font-size:17px; color:#7EC8FF; letter-spacing:.005em; line-height:1.2; text-shadow:0 2px 14px rgba(0,0,0,.6);">2nd Slowest-Aging Person on Earth</div>
-  <div style="font-weight:600; font-size:13px; color:rgba(191,224,255,.95); letter-spacing:.01em; line-height:1.3;">Longevity Life Academy Instructor</div>
-</div></div>
-    <div class="courseinfo"><div style="font-weight:700; font-size:14px; color:rgba(255,255,255,.94); letter-spacing:.01em; line-height:1.35; text-shadow:0 2px 12px rgba(0,0,0,.6);">The Longevity Masterclass &middot; 18 Live Sessions &middot; 100% Online</div></div>
-    <div class="cta-row">
-      <div class="trust" style="font-size:14px; gap:8px;"><img src="../../assets/tp_logo-white.svg" style="height:18px;"><img src="../../assets/tp_stars-5.svg" style="height:16px;"><span style="font-weight:800;">4.6/5</span></div>
-      <span class="cta" style="font-size:18px; padding:14px 30px;">Enroll Now <span>&rarr;</span></span>
-    </div>
+  <div class="textpanel">
+    <div style="margin-bottom:16px;"><div><div style="font-family:'Instrument Serif','Times New Roman',serif; font-weight:400; font-size:51px; line-height:0.95; letter-spacing:-.015em; white-space:nowrap;"><span style="color:#B8D4E8;">Longevity</span> <span style="color:#FFFFFF;">Life Academy</span></div><div style="display:flex; align-items:center; gap:9px; margin-top:14px;"><span style="font-family:'Instrument Serif','Times New Roman',serif; font-style:italic; font-size:23px; color:#FFFFFF;">by</span><img src="../../assets/eteacher_word.png" style="height:23px; display:block; margin-top:3px;"><span style="font-family:'Instrument Serif','Times New Roman',serif; font-style:italic; font-size:23px; color:#FFFFFF;">Group</span></div></div></div>
+    <div style="margin-bottom:17px;"><div style="font-family:'Instrument Serif','Times New Roman',serif; font-weight:400; font-size:101px; color:#ffffff; line-height:0.99; letter-spacing:-.012em; width:724px; position:relative; z-index:9; text-shadow:0 4px 32px rgba(0,0,0,.45);">It&rsquo;s not the years.<br><span style="font-family:'Instrument Serif','Times New Roman',serif; font-style:italic; font-weight:400; letter-spacing:-.02em; background:linear-gradient(180deg,#BFE2FF 0%,#6FB6FF 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">It&rsquo;s being there.</span></div></div>
+    <div style="margin-top:69px; margin-bottom:25px;"><div><div style="font-family:'Codec Pro','Inter',sans-serif; font-weight:700; font-size:28px; color:#ffffff; letter-spacing:-.01em; line-height:1.12; white-space:nowrap; text-shadow:0 0 5px rgba(255,255,255,.7),0 0 14px rgba(190,225,255,.5),0 0 30px rgba(130,185,255,.35),0 2px 8px rgba(2,6,20,.45);">The Longevity Blueprint</div><div style="display:flex; gap:9px; margin-top:9px;"><span style="display:inline-flex; align-items:center; gap:7px; white-space:nowrap; background:linear-gradient(180deg, rgba(46,84,150,.34) 0%, rgba(14,30,64,.42) 100%); border:1px solid rgba(140,180,255,.22); box-shadow:inset 0 1px 0 rgba(255,255,255,.10); border-radius:8px; padding:7px 11px; font-family:'Inter',sans-serif; font-weight:600; font-size:13px; letter-spacing:.09em; color:#f2f7ff;"><span style="width:7px; height:7px; border-radius:50%; background:#2BE080; box-shadow:0 0 8px rgba(43,224,128,.9),0 0 18px rgba(43,224,128,.5); display:inline-block; flex-shrink:0;"></span>18 LIVE SESSIONS</span><span style="display:inline-flex; align-items:center; gap:7px; white-space:nowrap; background:linear-gradient(180deg, rgba(46,84,150,.34) 0%, rgba(14,30,64,.42) 100%); border:1px solid rgba(140,180,255,.22); box-shadow:inset 0 1px 0 rgba(255,255,255,.10); border-radius:8px; padding:7px 11px; font-family:'Inter',sans-serif; font-weight:600; font-size:13px; letter-spacing:.09em; color:#f2f7ff;"><span style="width:7px; height:7px; border-radius:50%; background:#2BE080; box-shadow:0 0 8px rgba(43,224,128,.9),0 0 18px rgba(43,224,128,.5); display:inline-block; flex-shrink:0;"></span>100% ONLINE</span></div></div></div>
+    <div><div style="display:inline-flex; align-items:center; gap:7px; white-space:nowrap;"><img src="../../assets/tp_stars-5.svg" style="height:13px; display:block;"><img src="../../assets/tp_logo-white.svg" style="height:13px; display:block; margin-top:0px;"><span style="font-family:'Inter',sans-serif; font-weight:600; font-size:12px; color:rgba(255,255,255,.92);">4.6/5&ensp;&middot;&ensp;600+ reviews</span></div></div>
   </div>
+  <div class="photopanel"><img src="../../assets/real_julie-standing-hd.jpg"><div class="blend"></div><div style="position:absolute; left:0; right:0; bottom:0; z-index:6; padding:72px 24px 32px 24px; background:linear-gradient(180deg, rgba(4,9,26,0) 0%, rgba(4,9,26,.78) 62%, rgba(4,9,26,.92) 100%);"><div style="border-left:4px solid #006EFF; padding-left:14px;"><div style="font-family:'Inter',sans-serif; font-weight:800; font-size:32px; color:#ffffff; letter-spacing:.01em; line-height:1.15; white-space:nowrap;">Julie Gibson Clark</div><div style="font-family:'Instrument Serif','Times New Roman',serif; font-style:italic; font-weight:400; font-size:21px; color:#9cc3ef; line-height:1.25; margin-top:4px;">Longevity Life Academy Instructor</div><div style="margin-top:11px;"><div style="filter:drop-shadow(0 2px 19px rgba(206,168,96,.32)); text-align:left;"><div style="display:flex; align-items:center; gap:12px; margin-bottom:11px;"><span style="flex:1; height:1px; min-width:28px; background:linear-gradient(90deg, rgba(219,183,120,0) 0%, rgba(219,183,120,.85) 50%, rgba(219,183,120,0) 100%);"></span><span style="color:#EBD3A2; font-size:16px; line-height:1;">&#10022;</span><span style="flex:1; height:1px; min-width:28px; background:linear-gradient(90deg, rgba(219,183,120,0) 0%, rgba(219,183,120,.85) 50%, rgba(219,183,120,0) 100%);"></span></div><div style="font-family:'Instrument Serif','Times New Roman',serif; font-style:italic; font-weight:400; font-size:36px; line-height:1.12; letter-spacing:.005em; white-space:nowrap; background:linear-gradient(180deg,#FAF0DA 0%,#EDD2A0 42%,#C99F5C 100%); -webkit-background-clip:text; background-clip:text; color:transparent;">2nd Slowest-Aging<br>Person on Earth</div></div></div></div></div></div>
+
 </div></body></html>
