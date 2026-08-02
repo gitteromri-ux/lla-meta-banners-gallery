@@ -33,30 +33,30 @@ V3 = [
 V4 = [
     {"id":"v4_b1", "title":"Willpower Fails, Habits Don't", "photo":"real_julie-standing-hd.jpg", "focus":"52% 18%", "headline":"Willpower fails.<br>Habits don&rsquo;t.", "cta":"Build My Protocol"},
     {"id":"v4_b2", "title":"Make Longevity Automatic", "photo":"real_julie-purple.jpg", "focus":"50% 15%", "headline":"Make longevity<br>automatic.", "cta":"Start My Blueprint"},
-    {"id":"v4_b3", "title":"Small Habits, Kept For Years", "photo":"real_julie-hero.jpg", "focus":"78% 30%", "headline":"Small habits.<br>Kept for years.", "cta":"Join the Next Cohort"},
+    {"id":"v4_b3", "title":"Small Habits, Kept For Years", "photo":"real_julie-hero.jpg", "focus":"78% 30%", "headline":"Small habits.<br>Kept for years.", "cta":"Enroll Now"},
     {"id":"v4_b4", "title":"It's Not The Years, It's Being There", "photo":"real_julie-standing-hd.jpg", "focus":"52% 18%", "headline":"It&rsquo;s not the years.<br>It&rsquo;s being there.", "cta":"Apply Now"},
     {"id":"v4_b5", "title":"Stay Strong For The People Who Need You", "photo":"real_julie-purple.jpg", "focus":"50% 15%", "headline":"Stay strong for the<br>people who need you.", "cta":"Enroll Now"},
     {"id":"v4_b6", "title":"Live Longer For Your Reason", "photo":"real_julie-hero.jpg", "focus":"78% 30%", "headline":"Find your reason.<br>Then live longer for it.", "cta":"Start Today"},
     {"id":"v4_b7", "title":"Habits That Outlast Willpower", "photo":"real_julie-standing-hd.jpg", "focus":"52% 15%", "headline":"Habits that outlast<br>willpower.", "cta":"Get My Protocol"},
     {"id":"v4_b8", "title":"Be There For Them", "photo":"real_julie-purple.jpg", "focus":"50% 18%", "headline":"Be there for<br>the people who<br>need you.", "cta":"Apply Now"},
-    {"id":"v4_b9", "title":"Repeat It Until It's Automatic", "photo":"real_julie-standing-hd.jpg", "focus":"52% 10%", "headline":"Repeat it until it&rsquo;s<br>automatic.", "cta":"Join the Next Cohort"},
+    {"id":"v4_b9", "title":"Repeat It Until It's Automatic", "photo":"real_julie-standing-hd.jpg", "focus":"52% 10%", "headline":"Repeat it until it&rsquo;s<br>automatic.", "cta":"Enroll Now"},
     {"id":"v4_b10","title":"Julie vs Bryan Johnson", "layout":"versus"},
 ]
 V6 = [
     {"id":"v6_b1", "title":"Age Slower Starting With Your Habits", "photo":"real_julie-standing-hd.jpg", "focus":"52% 18%", "headline":"Age slower.<br>Starting with<br>your habits.", "cta":"Build My Protocol"},
     {"id":"v6_b2", "title":"The Science Of Aging Slower", "photo":"real_julie-purple.jpg", "focus":"50% 15%", "headline":"The science of<br>aging slower.", "cta":"Start My Blueprint"},
-    {"id":"v6_b3", "title":"Small Habits Slower Aging", "photo":"real_julie-hero.jpg", "focus":"78% 30%", "headline":"Small habits.<br>Slower aging.", "cta":"Join the Next Cohort"},
+    {"id":"v6_b3", "title":"Small Habits Slower Aging", "photo":"real_julie-hero.jpg", "focus":"78% 30%", "headline":"Small habits.<br>Slower aging.", "cta":"Enroll Now"},
     {"id":"v6_b4", "title":"Add Healthy Years To Your Life", "photo":"real_julie-standing-hd.jpg", "focus":"52% 18%", "headline":"Add healthy years<br>to your life.", "cta":"Apply Now"},
     {"id":"v6_b5", "title":"Live Long Live Strong Be There", "photo":"real_julie-purple.jpg", "focus":"50% 15%", "headline":"Live long.<br>Live strong.<br>Be there.", "cta":"Enroll Now"},
     {"id":"v6_b6", "title":"Slow Your Biological Age", "photo":"real_julie-hero.jpg", "focus":"78% 30%", "headline":"Slow your<br>biological age.", "cta":"Start Today"},
     {"id":"v6_b7", "title":"The Habits That Slow Aging", "photo":"real_julie-standing-hd.jpg", "focus":"52% 15%", "headline":"The habits that<br>slow aging.", "cta":"Get My Protocol"},
     {"id":"v6_b8", "title":"More Years More Strength More You", "photo":"real_julie-purple.jpg", "focus":"50% 18%", "headline":"More years.<br>More strength.<br>More you.", "cta":"Apply Now"},
-    {"id":"v6_b9", "title":"Aging Is A Habit Change It", "photo":"real_julie-standing-hd.jpg", "focus":"52% 10%", "headline":"Aging is a habit.<br>Change it.", "cta":"Join the Next Cohort"},
+    {"id":"v6_b9", "title":"Aging Is A Habit Change It", "photo":"real_julie-standing-hd.jpg", "focus":"52% 10%", "headline":"Aging is a habit.<br>Change it.", "cta":"Enroll Now"},
     {"id":"v6_b10","title":"Julie vs Bryan Johnson", "layout":"versus"},
 ]
 V7 = [dict(b, id=b["id"].replace("v6_","v7_")) for b in V6]
 CHOSEN = [
-    {"id":"chosen_b1", "title":"Repeat It Until It's Automatic", "photo":"real_julie-standing-hd.jpg", "focus":"52% 10%", "headline":"Repeat it until<br>it&rsquo;s automatic.", "cta":"Join the Next Cohort"},
+    {"id":"chosen_b1", "title":"Repeat It Until It's Automatic", "photo":"real_julie-standing-hd.jpg", "focus":"52% 10%", "headline":"Repeat it until<br>it&rsquo;s automatic.", "cta":"Enroll Now"},
     {"id":"chosen_b2", "title":"Age Slower, Be There Longer", "photo":"real_julie-standing-hd.jpg", "focus":"52% 18%", "headline":"Age slower.<br>Be there longer.", "cta":"Enroll Now"},
     {"id":"chosen_b3", "title":"Eight Months per Year", "photo":"real_julie-standing-hd.jpg", "focus":"52% 18%", "headline":"&ldquo;For every year<br>that passes, I only<br>age eight months.&rdquo;", "cta":"Enroll Now"},
     {"id":"chosen_b4", "title":"Learn to Age a Third Slower", "photo":"real_julie-standing-hd.jpg", "focus":"52% 18%", "headline":"Learn to age<br>a third slower.", "cta":"Enroll Now"},
