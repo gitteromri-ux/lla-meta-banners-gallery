@@ -233,6 +233,21 @@ def cta_site(fs, text):
             f'box-shadow:0 12px 28px rgba(0,110,255,.38),0 2px 6px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.25);">{text}</span>')
 
 
+
+def gold_credential(fs, align="left"):
+    """Champagne-gradient serif credential: hairline rules + diamond accent, gradient-clipped text."""
+    rule = (f'<span style="flex:1; height:1px; min-width:{int(fs*0.8)}px; '
+            f'background:linear-gradient(90deg, rgba(219,183,120,0) 0%, rgba(219,183,120,.85) 50%, rgba(219,183,120,0) 100%);"></span>')
+    return (f'<div style="filter:drop-shadow(0 2px {int(fs*0.55)}px rgba(206,168,96,.32)); text-align:{align};">'
+            f'<div style="display:flex; align-items:center; gap:{int(fs*0.34)}px; margin-bottom:{int(fs*0.32)}px;">'
+            f'{rule}<span style="color:#EBD3A2; font-size:{int(fs*0.46)}px; line-height:1;">&#10022;</span>{rule}</div>'
+            f'<div style="font-family:{SERIF}; font-style:italic; font-weight:400; font-size:{fs}px; line-height:1.12; '
+            f'letter-spacing:.005em; white-space:nowrap; '
+            f'background:linear-gradient(180deg,#FAF0DA 0%,#EDD2A0 42%,#C99F5C 100%); '
+            f'-webkit-background-clip:text; background-clip:text; color:transparent;">'
+            f'2nd Slowest-Aging<br>Person on Earth</div></div>')
+
+
 def lower_third_wide(s, size_key, w, edge):
     bot = int(150*s) if size_key == "9x16" else int(44*s)
     avail = w - 2*edge
@@ -248,9 +263,7 @@ def lower_third_wide(s, size_key, w, edge):
             f'letter-spacing:.01em; line-height:1.12; white-space:nowrap;">Julie Gibson Clark</div>'
             f'<div style="font-family:{SERIF}; font-style:italic; font-weight:400; font-size:{role_fs}px; '
             f'color:{ICE}; line-height:1.25; margin-top:{int(6*s)}px; white-space:nowrap;">Longevity Life Academy Instructor</div></div>'
-            f'<div style="font-family:{SERIF}; font-style:italic; font-weight:400; font-size:{cred_fs}px; '
-            f'color:{GOLD}; line-height:1.10; text-align:right; white-space:nowrap;">'
-            f'<span style="font-style:normal;">&#9733;</span>&nbsp;2nd Slowest-Aging<br>Person on Earth</div>'
+            f'{gold_credential(cred_fs, "right")}'
             f'</div></div>')
 
 
@@ -264,9 +277,7 @@ def lower_third(s, size_key, name_fs, role_fs, cred_fs):
             f'letter-spacing:.01em; line-height:1.15; white-space:nowrap;">Julie Gibson Clark</div>'
             f'<div style="font-family:{SERIF}; font-style:italic; font-weight:400; font-size:{role_fs}px; '
             f'color:{ICE}; line-height:1.25; margin-top:{int(5*s)}px;">Longevity Life Academy Instructor</div>'
-            f'<div style="font-family:{SERIF}; font-style:italic; font-weight:400; font-size:{cred_fs}px; '
-            f'color:{GOLD}; line-height:1.12; margin-top:{int(12*s)}px; white-space:nowrap;">'
-            f'<span style="font-style:normal;">&#9733;</span>&nbsp;2nd Slowest-Aging<br>Person on Earth</div>'
+            f'<div style="margin-top:{int(14*s)}px;">{gold_credential(cred_fs, "left")}</div>'
             f'</div></div>')
 
 
