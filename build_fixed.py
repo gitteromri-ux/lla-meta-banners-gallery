@@ -338,8 +338,7 @@ def render_signature(b, size_key, w, h):
   <div class="textpanel">
     <div style="margin-bottom:{g_lock}px;">{site_lockup2(lock_fs)}</div>
     <div style="margin-bottom:{g_hl}px;">{headline_site(b['headline'], hl_size, inner, 1.12 if is_portrait else (1.22 if is_landscape else 1.08))}</div>
-    <div style="margin-top:{int(h*(0.05 if is_portrait else 0.10))}px; margin-bottom:{g_bp}px;">{blueprint_site(bp_fs, sub_fs)}</div>
-    <div style="margin-bottom:{g_bp}px;">{cta_site(cta_fs, cta)}</div>
+    <div style="margin-top:{int(h*(0.06 if is_portrait else 0.11))}px; margin-bottom:{int(g_bp*1.35)}px;">{blueprint_site(bp_fs, sub_fs)}</div>
     <div>{trust_bottom(tp_fs)}</div>
   </div>
   <div class="photopanel"><img src="{ASSETS}/{photo}"><div class="blend"></div>{"" if is_portrait else lower_third(s, size_key, name_fs, role_fs, lt_cred_fs)}</div>
