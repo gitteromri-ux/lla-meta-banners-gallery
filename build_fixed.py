@@ -53,12 +53,12 @@ def scale_for(w, h):
     s = (area / (1080*1080)) ** 0.5
     return s, w / h
 
-def brand_lockup(s, align="left", scale_mult=1.0):
-    logo_h = int(160 * s * scale_mult)
+def brand_lockup(s, align="left", scale_mult=None):
     justify = "flex-start" if align == "left" else "center"
+    style = f"height:{int(160*s*scale_mult)}px; display:block;" if scale_mult else "display:block;"
     return f"""
 <div class="brandlock" style="display:flex; align-items:center; justify-content:{justify};">
-  <img src="{ASSETS}/lla_logo.png" style="height:{logo_h}px; display:block; filter:drop-shadow(0 2px 10px rgba(0,0,0,.35));">
+  <img src="{ASSETS}/lla_logo.png" style="{style} filter:drop-shadow(0 2px 10px rgba(0,0,0,.35));">
 </div>"""
 
 def styled_headline(headline, italic_last=True):
@@ -69,119 +69,159 @@ def styled_headline(headline, italic_last=True):
     last = f'<span style="font-style:italic; font-weight:500; color:#b9d4f2;">{parts[-1]}</span>'
     return "<br>".join(parts[:-1] + [last])
 
-def cred_line(s, mult=1.0):
-    fs = max(20, int(30 * s * mult))
+GOLD = "#dcbf85"
+
+def cred_line(s, mult=1.0, fs=None):
+    fs = fs or max(24, int(38 * s * mult))
     return (f'<div style="font-family:\'EB Garamond\',serif; font-style:italic; font-weight:500; '
-            f'font-size:{fs}px; color:rgba(232,241,252,.92); line-height:1.35; '
-            f'text-shadow:0 2px 12px rgba(2,6,20,.6);">'
+            f'font-size:{fs}px; color:rgba(232,241,252,.92); line-height:1.3;">'
             f'<span style="font-weight:700; font-style:normal; color:#ffffff;">Julie Gibson Clark</span>, '
             f'Longevity Life Academy Instructor</div>')
 
-def facts_block(s, mult=1.0, cred_first=True, split_course=False):
-    f1 = max(24, int(34 * s * mult))   # credential — enlarged, clearly visible
-    f2 = max(20, int(28 * s * mult))
-    gap = max(8, int(12 * s * mult))
-    rows = []
-    if cred_first:
-        rows.append(f'<div style="font-weight:700; font-size:{f1}px; color:{GLOW}; line-height:1.25; letter-spacing:.008em; {GLOW_SHADOW}">{FACT_CRED}</div>')
-    course_rows = ["The Longevity Blueprint. 18 live sessions.", "100% online. Taught live."] if split_course else [FACT_COURSE]
-    for row in course_rows:
-        rows.append(f'<div style="font-weight:700; font-size:{f2}px; color:{GLOW}; line-height:1.3; letter-spacing:.008em; {GLOW_SHADOW}">{row}</div>')
-    return f'<div style="display:flex; flex-direction:column; gap:{gap}px;">' + "".join(rows) + "</div>"
+def credential_gold(fs, two_line=False):
+    """Julie's authority credential — distinct gold serif treatment (NOT course info)."""
+    text = '2nd Slowest-Aging<br>Person on Earth' if two_line else '2nd Slowest-Aging Person on Earth'
+    return (f'<div style="font-family:\'EB Garamond\',serif; font-style:italic; font-weight:600; '
+            f'font-size:{fs}px; color:{GOLD}; line-height:1.18; letter-spacing:.005em;">'
+            f'<span style="font-style:normal;">&#9733;</span>&nbsp; {text}</div>')
 
-def cta_button(s, text="Enroll Now", mult=1.0):
-    fs = max(20, int(28 * s * mult))
-    pad_v = max(14, int(fs * 0.80))
-    pad_h = max(30, int(fs * 1.9))
-    return (f'<span style="display:inline-flex; align-items:center; justify-content:center; '
-            f'background:linear-gradient(180deg,rgba(20,34,72,.92) 0%,rgba(10,18,46,.94) 100%); color:#ffffff; '
-            f"font-family:'Inter',sans-serif; font-weight:600; font-size:{fs}px; letter-spacing:.16em; "
+def course_block(title_fs, chip_fs, gap):
+    """Course info — clearly separated: course name + pill chips. Never a text list."""
+    pad_v = int(chip_fs * 0.50); pad_h = int(chip_fs * 0.95)
+    chips = "".join(
+        f'<span style="display:inline-flex; align-items:center; padding:{pad_v}px {pad_h}px; '
+        f'border-radius:9999px; background:rgba(0,110,255,.16); border:1.5px solid rgba(156,195,239,.55); '
+        f'color:#eaf2fc; font-weight:700; font-size:{chip_fs}px; letter-spacing:.01em; white-space:nowrap;">{c}</span>'
+        for c in ["18 Live Sessions", "100% Online"])
+    return (f'<div style="display:flex; flex-direction:column; gap:{int(gap*0.7)}px;">'
+            f'<div style="font-family:\'Inter\',sans-serif; font-weight:800; font-size:{title_fs}px; '
+            f'color:#ffffff; letter-spacing:-.01em; line-height:1.08; white-space:nowrap;">The Longevity Blueprint</div>'
+            f'<div style="display:flex; flex-wrap:nowrap; gap:{int(gap*0.75)}px;">{chips}</div></div>')
+
+def cta_button(s, text="Enroll Now", mult=1.0, fs=None):
+    fs = fs or max(24, int(36 * s * mult))
+    pad_v = max(14, int(fs * 0.68))
+    pad_h = max(30, int(fs * 1.6))
+    return (f'<span style="display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; '
+            f'background:{BLUE}; color:#ffffff; '
+            f"font-family:'Inter',sans-serif; font-weight:700; font-size:{fs}px; letter-spacing:.12em; "
             f'text-transform:uppercase; padding:{pad_v}px {pad_h}px; border-radius:9999px; '
-            f'border:2px solid rgba(158,196,242,.95); '
-            f'box-shadow:0 0 26px rgba(110,160,235,.5), 0 10px 34px rgba(2,6,20,.55), inset 0 0 18px rgba(110,160,235,.18);">{text}</span>')
+            f'box-shadow:0 12px 34px rgba(0,60,160,.45);">{text}</span>')
 
-def trust_row(s, mult=1.0):
-    logo_h = max(22, int(34*s*mult))
-    star_h = max(20, int(30*s*mult))
-    fs = max(16, int(24*s*mult))
-    gap = max(10, int(14*s*mult))
-    return (f'<div style="display:flex; align-items:center; gap:{gap}px; font-size:{fs}px; color:rgba(240,246,253,.94); font-weight:600;">'
+def trust_row(s, mult=1.0, fs=None):
+    base = fs or int(30*s*mult)
+    logo_h = max(24, int(base*1.4))
+    star_h = max(22, int(base*1.2))
+    f2 = max(18, base)
+    gap = max(10, int(base*0.55))
+    return (f'<div style="display:flex; align-items:center; gap:{gap}px; font-size:{f2}px; color:rgba(240,246,253,.94); font-weight:600; white-space:nowrap;">'
             f'<img src="{ASSETS}/tp_logo-white.svg" style="height:{logo_h}px; display:block;">'
             f'<img src="{ASSETS}/tp_stars-5.svg" style="height:{star_h}px; display:block;">'
             f'<span style="font-weight:700;">4.6/5</span></div>')
 
 
 # ============================================================
-# SIGNATURE — full-bleed premium editorial (approved system)
+# SIGNATURE — SPLIT PANEL: text on one side, Julie fully visible on the other
 # ============================================================
 def render_signature(b, size_key, w, h):
     s, ratio = scale_for(w, h)
     is_landscape = ratio > 1.4
     is_portrait  = ratio < 0.66
 
-    edge = int(56 * s)
-    photo = b["photo"]
-    focus = b["focus"]
+    text_frac = 0.55 if is_landscape else 0.58
+    tw = int(w * text_frac)
+    edge = int(56 * s) if not is_landscape else int(48 * s)
+    top_pad = int(120 * s) if size_key == "9x16" else edge
+    bot_pad = int(150 * s) if size_key == "9x16" else edge
+    inner = tw - 2 * edge
 
-    longest_line = max((len(part) for part in b["headline"].replace("<br>", "\n").split("\n")), default=1)
+    # ---- headline: as large as fits the panel width
+    import html as _h
+    plain = b["headline"].replace("<br>", "\n")
+    for ent, ch in [("&rsquo;","'"),("&ldquo;",'"'),("&rdquo;",'"'),("&amp;","&")]:
+        plain = plain.replace(ent, ch)
+    longest = max((len(l) for l in plain.split("\n")), default=1)
+    hl_cap = (96 if is_landscape else 150) * s
+    hl_size = int(min(hl_cap, inner / (longest * 0.44)))
+
+    # ---- per-format stack sizing (everything fits, no overflow)
     if is_landscape:
-        hl_size = int((80 if longest_line <= 14 else 66 if longest_line <= 18 else 56) * s)
-        stack_mult = 0.78
-        brand_scale = 0.66
+        logo_h   = int(100 * s)
+        eyebrow_fs = 0                      # dropped on landscape (approved pattern)
+        name_fs  = min(int(26*s), int(inner / (54*0.52)))
+        gold_fs  = min(int(30*s), int(inner / (36*0.44)))
+        title_fs = int(30*s)
+        chip_fs  = min(int(26*s), int((inner-16) / 19.7))
+        cta_fs   = int(26*s)
+        trust_fs = int(22*s)
+        gap      = int(14*s)
+        cta_row  = True
     elif is_portrait:
-        hl_size = int((150 if longest_line <= 10 else 112 if longest_line <= 12 else 98 if longest_line <= 14 else 88) * s)
-        stack_mult = 1.0
-        brand_scale = 1.1
+        logo_h   = int(190 * s)
+        eyebrow_fs = min(int(38*s), int(inner / (28*0.5)))
+        name_fs  = min(int(38*s), int(inner / (28*0.52)))
+        gold_fs  = min(int(52*s), int(inner / (20*0.46)))
+        title_fs = min(int(50*s), int(inner / (23*0.52)))
+        chip_fs  = min(int(34*s), int((inner-16) / 19.7))
+        cta_fs   = int(34*s)
+        trust_fs = int(26*s)
+        gap      = int(26*s)
+        cta_row  = False
     else:
-        hl_size = int((120 if longest_line <= 10 else 96 if longest_line <= 14 else 80) * s)
-        stack_mult = 1.0
-        brand_scale = 0.95
+        logo_h   = int(140 * s)
+        eyebrow_fs = min(int(34*s), int(inner / (28*0.5)))
+        name_fs  = int(32*s)
+        gold_fs  = min(int(44*s), int(inner / (20*0.46)))
+        title_fs = min(int(42*s), int(inner / (23*0.52)))
+        chip_fs  = min(int(30*s), int((inner-16) / 19.7))
+        cta_fs   = int(32*s)
+        trust_fs = int(24*s)
+        gap      = int(20*s)
+        cta_row  = False
 
-    if is_landscape:
-        scrim_style = "background:linear-gradient(97deg, rgba(6,11,26,.94) 0%, rgba(8,14,30,.86) 30%, rgba(10,16,32,.5) 52%, rgba(12,18,32,.12) 72%, rgba(12,18,32,0) 100%);"
-        content_box = f"left:{edge}px; width:{int(w*0.62)}px; top:{int(30*s)}px; bottom:{int(30*s)}px; display:flex; flex-direction:column;"
-    else:
-        scrim_style = "background:linear-gradient(180deg, rgba(6,11,26,0) 0%, rgba(6,11,26,.15) 26%, rgba(6,11,26,.66) 50%, rgba(6,11,26,.94) 76%, rgba(4,8,22,.98) 100%);"
-        content_box = f"left:{edge}px; right:{edge}px; top:{edge}px; bottom:{edge}px; display:flex; flex-direction:column;"
-
-    # 9x16: keep clear of IG story UI
-    if size_key == "9x16":
-        content_box = f"left:{edge}px; right:{edge}px; top:{int(150*s)}px; bottom:{int(200*s)}px; display:flex; flex-direction:column;"
-
-    eyebrow = "" if is_landscape else (
+    gold_two_line = (36 * 0.44 * gold_fs) > inner
+    eyebrow = "" if not eyebrow_fs else (
         f'<div style="font-family:\'EB Garamond\',serif; font-style:italic; font-weight:500; '
-        f'font-size:{max(20,int(30*s))}px; color:{ICE}; margin-top:{int(20*s)}px; '
-        f'text-shadow:0 2px 12px rgba(2,6,20,.6);">Live Online Longevity Course</div>')
+        f'font-size:{eyebrow_fs}px; color:{ICE}; margin-top:{int(18*s)}px; white-space:nowrap;">Live Online Longevity Course</div>')
 
-    cta_mult = 0.82 if is_landscape else 1.0
+    if cta_row:
+        ctablock = (f'<div class="ctablock" style="display:flex; flex-direction:row; align-items:center; gap:{int(24*s)}px;">'
+                    f'{cta_button(s, b.get("cta","Enroll Now"), fs=cta_fs)}{trust_row(s, fs=trust_fs)}</div>')
+    else:
+        ctablock = (f'<div class="ctablock" style="display:flex; flex-direction:column; align-items:flex-start; gap:{int(18*s)}px;">'
+                    f'{cta_button(s, b.get("cta","Enroll Now"), fs=cta_fs)}{trust_row(s, fs=trust_fs)}</div>')
+
+    photo = b["photo"]; focus = b["focus"]
 
     return f"""{html_head(w,h)}
 <style>
-.photobox {{ position:absolute; inset:0; overflow:hidden; z-index:1; background:{NAVY_DEEP}; }}
-.photobox img {{ width:100%; height:100%; object-fit:cover; object-position:{focus}; }}
-.scrim {{ position:absolute; inset:0; {scrim_style} z-index:2; }}
-.topscrim {{ position:absolute; left:0; right:0; top:0; height:{int(280*s)}px; background:linear-gradient(180deg, rgba(6,11,26,.8) 0%, rgba(6,11,26,.5) 40%, rgba(6,11,26,.14) 75%, rgba(6,11,26,0) 100%); z-index:3; pointer-events:none; }}
-.content {{ position:absolute; {content_box} z-index:5; }}
-.headline {{ font-size:{hl_size}px; color:#f5f8fc; line-height:.98; text-shadow:0 5px 34px rgba(2,6,20,.65); margin:0 0 {int(24*s)}px 0; }}
-.credblock {{ margin-bottom:{int(18*s)}px; }}
-.factsblock {{ margin-bottom:{int(30*s)}px; }}
-.ctablock {{ display:flex; flex-direction:column; align-items:flex-start; gap:{int(18*s)}px; }}
+.canvas {{ display:flex; flex-direction:row; }}
+.textpanel {{ width:{tw}px; height:{h}px; flex-shrink:0; position:relative; z-index:5;
+  background:linear-gradient(160deg, #0a1430 0%, {NAVY_DEEP} 55%, #04081a 100%);
+  padding:{top_pad}px {edge}px {bot_pad}px {edge}px; display:flex; flex-direction:column; }}
+.photopanel {{ position:relative; flex:1; height:{h}px; overflow:hidden; background:{NAVY_DEEP}; }}
+.photopanel img {{ width:100%; height:100%; object-fit:cover; object-position:{focus}; display:block; }}
+.photopanel .blend {{ position:absolute; inset:0; background:linear-gradient(90deg, {NAVY_DEEP} 0%, rgba(6,11,32,.35) 10%, rgba(6,11,32,0) 26%); pointer-events:none; }}
+.brandlock img {{ height:{logo_h}px; max-width:{inner}px; object-fit:contain; object-position:left center; display:block; }}
+.headline {{ font-size:{hl_size}px; color:#f5f8fc; line-height:1.02; margin:0; }}
+.stack {{ display:flex; flex-direction:column; gap:{gap}px; }}
 </style>
 <div class="canvas">
-  <div class="photobox"><img src="{ASSETS}/{photo}"></div>
-  <div class="scrim"></div>
-  <div class="topscrim"></div>
-  <div class="content">
-    <div style="flex-shrink:0;">{brand_lockup(s, align="left", scale_mult=brand_scale)}{eyebrow}</div>
-    <div style="flex:1;"></div>
-    <div class="display headline">{styled_headline(b['headline'])}</div>
-    <div class="credblock">{cred_line(s, mult=stack_mult)}</div>
-    <div class="factsblock">{facts_block(s, mult=stack_mult, split_course=is_portrait)}</div>
-    <div class="ctablock">
-      {cta_button(s, b.get('cta','Enroll Now'), mult=cta_mult)}
-      {trust_row(s, mult=stack_mult)}
+  <div class="textpanel">
+    <div style="flex-shrink:0;">
+      {brand_lockup(s, align="left")}
+      {eyebrow}
+    </div>
+    <div style="flex:1; min-height:{int(24*s)}px;"></div>
+    <div class="stack">
+      <div class="display headline">{styled_headline(b['headline'])}</div>
+      <div>{cred_line(s, fs=name_fs)}</div>
+      <div>{credential_gold(gold_fs, two_line=gold_two_line)}</div>
+      <div>{course_block(title_fs, chip_fs, gap)}</div>
+      {ctablock}
     </div>
   </div>
+  <div class="photopanel"><img src="{ASSETS}/{photo}"><div class="blend"></div></div>
 </div></body></html>"""
 
 

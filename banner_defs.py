@@ -61,7 +61,7 @@ CHOSEN = [
     {"id":"chosen_b3", "title":"Eight Months per Year", "photo":"real_julie-standing-hd.jpg", "focus":"52% 18%", "headline":"&ldquo;For every year<br>that passes, I only<br>age eight months.&rdquo;", "cta":"Enroll Now"},
     {"id":"chosen_b4", "title":"Learn to Age a Third Slower", "photo":"real_julie-standing-hd.jpg", "focus":"52% 18%", "headline":"Learn to age<br>a third slower.", "cta":"Enroll Now"},
     {"id":"chosen_b5", "title":"Slow Your Pace of Aging", "photo":"real_julie-purple.jpg", "focus":"50% 24%", "headline":"Slow your<br>pace of aging.", "cta":"Enroll Now"},
-    {"id":"chosen_b6", "title":"World's #2 Slowest Ager", "photo":"julie_real_1.jpg", "focus":"50% 30%", "headline":"Learn longevity<br>from the world&rsquo;s<br>#2 slowest ager.", "cta":"Enroll Now"},
+    {"id":"chosen_b6", "title":"World's #2 Slowest Ager", "photo":"real_julie-standing-hd.jpg", "focus":"50% 14%", "headline":"Learn longevity<br>from the world&rsquo;s<br>#2 slowest ager.", "cta":"Enroll Now"},
 ]
 
 VERSIONS = {"v1": V1, "v2": V2, "v3": V3, "v4": V4, "v6": V6, "v7": V7, "chosen": CHOSEN}

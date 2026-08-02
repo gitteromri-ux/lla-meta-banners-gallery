@@ -9,32 +9,34 @@ html,body { width:1080px; height:1080px; overflow:hidden; background:#060b20; -w
 .display { font-family:'EB Garamond',serif; font-weight:600; letter-spacing:-.012em; }
 </style></head><body>
 <style>
-.photobox { position:absolute; inset:0; overflow:hidden; z-index:1; background:#060b20; }
-.photobox img { width:100%; height:100%; object-fit:cover; object-position:52% 18%; }
-.scrim { position:absolute; inset:0; background:linear-gradient(180deg, rgba(6,11,26,0) 0%, rgba(6,11,26,.15) 26%, rgba(6,11,26,.66) 50%, rgba(6,11,26,.94) 76%, rgba(4,8,22,.98) 100%); z-index:2; }
-.topscrim { position:absolute; left:0; right:0; top:0; height:280px; background:linear-gradient(180deg, rgba(6,11,26,.8) 0%, rgba(6,11,26,.5) 40%, rgba(6,11,26,.14) 75%, rgba(6,11,26,0) 100%); z-index:3; pointer-events:none; }
-.content { position:absolute; left:56px; right:56px; top:56px; bottom:56px; display:flex; flex-direction:column; z-index:5; }
-.headline { font-size:80px; color:#f5f8fc; line-height:.98; text-shadow:0 5px 34px rgba(2,6,20,.65); margin:0 0 24px 0; }
-.credblock { margin-bottom:18px; }
-.factsblock { margin-bottom:30px; }
-.ctablock { display:flex; flex-direction:column; align-items:flex-start; gap:18px; }
+.canvas { display:flex; flex-direction:row; }
+.textpanel { width:626px; height:1080px; flex-shrink:0; position:relative; z-index:5;
+  background:linear-gradient(160deg, #0a1430 0%, #060b20 55%, #04081a 100%);
+  padding:56px 56px 56px 56px; display:flex; flex-direction:column; }
+.photopanel { position:relative; flex:1; height:1080px; overflow:hidden; background:#060b20; }
+.photopanel img { width:100%; height:100%; object-fit:cover; object-position:52% 18%; display:block; }
+.photopanel .blend { position:absolute; inset:0; background:linear-gradient(90deg, #060b20 0%, rgba(6,11,32,.35) 10%, rgba(6,11,32,0) 26%); pointer-events:none; }
+.brandlock img { height:140px; max-width:514px; object-fit:contain; object-position:left center; display:block; }
+.headline { font-size:61px; color:#f5f8fc; line-height:1.02; margin:0; }
+.stack { display:flex; flex-direction:column; gap:20px; }
 </style>
 <div class="canvas">
-  <div class="photobox"><img src="../../assets/real_julie-standing-hd.jpg"></div>
-  <div class="scrim"></div>
-  <div class="topscrim"></div>
-  <div class="content">
+  <div class="textpanel">
     <div style="flex-shrink:0;">
+      
 <div class="brandlock" style="display:flex; align-items:center; justify-content:flex-start;">
-  <img src="../../assets/lla_logo.png" style="height:152px; display:block; filter:drop-shadow(0 2px 10px rgba(0,0,0,.35));">
-</div><div style="font-family:'EB Garamond',serif; font-style:italic; font-weight:500; font-size:30px; color:#9cc3ef; margin-top:20px; text-shadow:0 2px 12px rgba(2,6,20,.6);">Live Online Longevity Course</div></div>
-    <div style="flex:1;"></div>
-    <div class="display headline">&ldquo;For every year<br>that passes, I only<br><span style="font-style:italic; font-weight:500; color:#b9d4f2;">age eight months.&rdquo;</span></div>
-    <div class="credblock"><div style="font-family:'EB Garamond',serif; font-style:italic; font-weight:500; font-size:30px; color:rgba(232,241,252,.92); line-height:1.35; text-shadow:0 2px 12px rgba(2,6,20,.6);"><span style="font-weight:700; font-style:normal; color:#ffffff;">Julie Gibson Clark</span>, Longevity Life Academy Instructor</div></div>
-    <div class="factsblock"><div style="display:flex; flex-direction:column; gap:12px;"><div style="font-weight:700; font-size:34px; color:#8ff2ff; line-height:1.25; letter-spacing:.008em; text-shadow:0 0 6px rgba(127,231,255,.9),0 0 14px rgba(127,231,255,.7),0 0 28px rgba(90,190,255,.55),0 0 52px rgba(60,150,235,.35),0 2px 8px rgba(2,6,20,.55);">2nd slowest-aging person on Earth.</div><div style="font-weight:700; font-size:28px; color:#8ff2ff; line-height:1.3; letter-spacing:.008em; text-shadow:0 0 6px rgba(127,231,255,.9),0 0 14px rgba(127,231,255,.7),0 0 28px rgba(90,190,255,.55),0 0 52px rgba(60,150,235,.35),0 2px 8px rgba(2,6,20,.55);">The Longevity Blueprint. 18 live sessions. 100% online.</div></div></div>
-    <div class="ctablock">
-      <span style="display:inline-flex; align-items:center; justify-content:center; background:linear-gradient(180deg,rgba(20,34,72,.92) 0%,rgba(10,18,46,.94) 100%); color:#ffffff; font-family:'Inter',sans-serif; font-weight:600; font-size:28px; letter-spacing:.16em; text-transform:uppercase; padding:22px 53px; border-radius:9999px; border:2px solid rgba(158,196,242,.95); box-shadow:0 0 26px rgba(110,160,235,.5), 0 10px 34px rgba(2,6,20,.55), inset 0 0 18px rgba(110,160,235,.18);">Enroll Now</span>
-      <div style="display:flex; align-items:center; gap:14px; font-size:24px; color:rgba(240,246,253,.94); font-weight:600;"><img src="../../assets/tp_logo-white.svg" style="height:34px; display:block;"><img src="../../assets/tp_stars-5.svg" style="height:30px; display:block;"><span style="font-weight:700;">4.6/5</span></div>
+  <img src="../../assets/lla_logo.png" style="display:block; filter:drop-shadow(0 2px 10px rgba(0,0,0,.35));">
+</div>
+      <div style="font-family:'EB Garamond',serif; font-style:italic; font-weight:500; font-size:34px; color:#9cc3ef; margin-top:18px; white-space:nowrap;">Live Online Longevity Course</div>
+    </div>
+    <div style="flex:1; min-height:24px;"></div>
+    <div class="stack">
+      <div class="display headline">&ldquo;For every year<br>that passes, I only<br><span style="font-style:italic; font-weight:500; color:#b9d4f2;">age eight months.&rdquo;</span></div>
+      <div><div style="font-family:'EB Garamond',serif; font-style:italic; font-weight:500; font-size:32px; color:rgba(232,241,252,.92); line-height:1.3;"><span style="font-weight:700; font-style:normal; color:#ffffff;">Julie Gibson Clark</span>, Longevity Life Academy Instructor</div></div>
+      <div><div style="font-family:'EB Garamond',serif; font-style:italic; font-weight:600; font-size:44px; color:#dcbf85; line-height:1.18; letter-spacing:.005em;"><span style="font-style:normal;">&#9733;</span>&nbsp; 2nd Slowest-Aging<br>Person on Earth</div></div>
+      <div><div style="display:flex; flex-direction:column; gap:14px;"><div style="font-family:'Inter',sans-serif; font-weight:800; font-size:42px; color:#ffffff; letter-spacing:-.01em; line-height:1.08; white-space:nowrap;">The Longevity Blueprint</div><div style="display:flex; flex-wrap:nowrap; gap:15px;"><span style="display:inline-flex; align-items:center; padding:12px 23px; border-radius:9999px; background:rgba(0,110,255,.16); border:1.5px solid rgba(156,195,239,.55); color:#eaf2fc; font-weight:700; font-size:25px; letter-spacing:.01em; white-space:nowrap;">18 Live Sessions</span><span style="display:inline-flex; align-items:center; padding:12px 23px; border-radius:9999px; background:rgba(0,110,255,.16); border:1.5px solid rgba(156,195,239,.55); color:#eaf2fc; font-weight:700; font-size:25px; letter-spacing:.01em; white-space:nowrap;">100% Online</span></div></div></div>
+      <div class="ctablock" style="display:flex; flex-direction:column; align-items:flex-start; gap:18px;"><span style="display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; background:#006EFF; color:#ffffff; font-family:'Inter',sans-serif; font-weight:700; font-size:32px; letter-spacing:.12em; text-transform:uppercase; padding:21px 51px; border-radius:9999px; box-shadow:0 12px 34px rgba(0,60,160,.45);">Enroll Now</span><div style="display:flex; align-items:center; gap:13px; font-size:24px; color:rgba(240,246,253,.94); font-weight:600; white-space:nowrap;"><img src="../../assets/tp_logo-white.svg" style="height:33px; display:block;"><img src="../../assets/tp_stars-5.svg" style="height:28px; display:block;"><span style="font-weight:700;">4.6/5</span></div></div>
     </div>
   </div>
+  <div class="photopanel"><img src="../../assets/real_julie-standing-hd.jpg"><div class="blend"></div></div>
 </div></body></html>
