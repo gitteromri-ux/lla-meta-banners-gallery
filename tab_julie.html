@@ -1,0 +1,167 @@
+<section class="jv-root" id="tab-julie" data-tab="julie">
+  <div class="jv-grid" aria-hidden="true"></div>
+  <span class="jv-numeral" aria-hidden="true">01</span>
+
+  <header class="jv-head jv-reveal">
+    <h2 class="jv-title">Julie, the <em>master cut</em> and every resize.</h2>
+    <p class="jv-sub">This tab renders directly from the shared media manifest. The moment a Julie cut lands in production, it appears here automatically with no template changes.</p>
+  </header>
+
+  <div id="jv-stats-mount" class="jv-stats jv-reveal" aria-hidden="true"></div>
+
+  <div id="jv-body-mount"></div>
+
+  <template id="jv-empty-template">
+    <div class="jv-empty jv-reveal">
+      <p class="jv-empty-title">No cuts in the manifest yet</p>
+      <p class="jv-empty-sub">Julie's video assets are still in production. This tab is fully wired to <code>window.LLA_MEDIA.julie</code> and will populate the player, stat chips, and storyboards the moment real entries are added to the manifest.</p>
+    </div>
+  </template>
+
+  <template id="jv-cut-template">
+    <div class="jv-cut jv-reveal">
+      <p class="jv-cut-label"></p>
+      <div class="jv-stage">
+        <div class="jv-player-wrap">
+          <div class="jv-player-inner">
+            <video class="jv-video" controls preload="metadata" playsinline></video>
+          </div>
+        </div>
+        <p class="jv-specline"></p>
+        <div class="jv-dl-row">
+          <a class="jv-dl" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+            Download master file
+          </a>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="jv-board-card-template">
+    <div class="jv-board-card jv-reveal">
+      <p class="jv-board-title"></p>
+      <p class="jv-board-meta"></p>
+      <object class="jv-board-frame" type="application/pdf">
+        <iframe class="jv-board-frame" title="Storyboard preview"></iframe>
+      </object>
+      <div class="jv-board-actions">
+        <a class="jv-dl" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+          Download storyboard PDF
+        </a>
+      </div>
+    </div>
+  </template>
+</section>
+
+<script>
+(function(){
+  function bytesToSize(bytes){
+    if (!bytes) return '';
+    var mb = bytes / (1024*1024);
+    return mb >= 1000 ? (mb/1024).toFixed(2) + ' GB' : mb.toFixed(1) + ' MB';
+  }
+  function fmtDuration(sec){
+    if (!sec && sec !== 0) return '';
+    var m = Math.floor(sec/60), s = Math.round(sec%60);
+    return m + ':' + String(s).padStart(2,'0');
+  }
+
+  function render(){
+    var data = (window.LLA_MEDIA && window.LLA_MEDIA.julie) || { cuts: [], storyboards: [] };
+    var statsMount = document.getElementById('jv-stats-mount');
+    var bodyMount = document.getElementById('jv-body-mount');
+    if (!statsMount || !bodyMount) return;
+
+    var cuts = data.cuts || [];
+    var boards = data.storyboards || [];
+
+    if (cuts.length === 0){
+      statsMount.innerHTML = '';
+      var emptyTpl = document.getElementById('jv-empty-template');
+      bodyMount.appendChild(emptyTpl.content.cloneNode(true));
+    } else {
+      var primary = cuts[0];
+      statsMount.innerHTML =
+        '<div class="jv-chip"><span class="jv-chip-num">' + fmtDuration(primary.duration) + '</span><span class="jv-chip-label">Runtime</span></div>' +
+        '<div class="jv-chip"><span class="jv-chip-num">' + primary.w + '&times;' + primary.h + '</span><span class="jv-chip-label">Resolution</span></div>' +
+        '<div class="jv-chip"><span class="jv-chip-num">' + (primary.fps || '') + ' fps</span><span class="jv-chip-label">Frame rate</span></div>' +
+        '<div class="jv-chip"><span class="jv-chip-num">' + bytesToSize(primary.bytes) + '</span><span class="jv-chip-label">File size</span></div>';
+
+      var cutsWrap = document.createElement('div');
+      cutsWrap.className = 'jv-cuts';
+      var cutTpl = document.getElementById('jv-cut-template');
+
+      cuts.forEach(function(cut){
+        var node = cutTpl.content.cloneNode(true);
+        node.querySelector('.jv-cut-label').textContent = cut.label;
+        var video = node.querySelector('.jv-video');
+        video.src = cut.src;
+        video.poster = cut.poster || '';
+        video.width = cut.w;
+        video.height = cut.h;
+        var specline = node.querySelector('.jv-specline');
+        specline.innerHTML =
+          '<span>' + fmtDuration(cut.duration) + '</span><span class="jv-dot">&middot;</span>' +
+          '<span>' + cut.w + '&times;' + cut.h + '</span><span class="jv-dot">&middot;</span>' +
+          '<span>' + (cut.fps || '') + ' fps</span><span class="jv-dot">&middot;</span>' +
+          '<span>' + (cut.audio || '') + '</span><span class="jv-dot">&middot;</span>' +
+          '<span>' + bytesToSize(cut.bytes) + '</span>';
+        var dl = node.querySelector('.jv-dl');
+        dl.href = cut.src;
+        dl.setAttribute('download', cut.filename || cut.label);
+        cutsWrap.appendChild(node);
+      });
+      bodyMount.appendChild(cutsWrap);
+
+      if (boards.length){
+        var boardsSection = document.createElement('div');
+        boardsSection.className = 'jv-boards';
+        boardsSection.innerHTML = '<h3 class="jv-boards-head jv-reveal">Storyboards</h3><p class="jv-boards-sub jv-reveal">Full frame by frame breakdown for every cut.</p>';
+        var grid = document.createElement('div');
+        grid.className = 'jv-board-grid';
+        var boardTpl = document.getElementById('jv-board-card-template');
+        boards.forEach(function(b){
+          var node = boardTpl.content.cloneNode(true);
+          node.querySelector('.jv-board-title').textContent = b.label;
+          node.querySelector('.jv-board-meta').textContent = (b.pages ? b.pages + ' pages' : '') + (b.bytes ? ' \u00b7 ' + bytesToSize(b.bytes) : '');
+          var obj = node.querySelector('object.jv-board-frame');
+          obj.data = b.src;
+          var iframe = node.querySelector('iframe.jv-board-frame');
+          iframe.src = b.src;
+          var dl = node.querySelector('.jv-dl');
+          dl.href = b.src;
+          dl.setAttribute('download', b.filename || b.label);
+          grid.appendChild(node);
+        });
+        boardsSection.appendChild(grid);
+        bodyMount.appendChild(boardsSection);
+      }
+    }
+
+    // reveal on scroll
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('#tab-julie .jv-reveal');
+    if (reduceMotion || !('IntersectionObserver' in window)){
+      targets.forEach(function(t){ t.classList.add('jv-in'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            entry.target.classList.add('jv-in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      targets.forEach(function(t){ io.observe(t); });
+    }
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', render);
+  } else {
+    render();
+  }
+})();
+</script>

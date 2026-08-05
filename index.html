@@ -3,44 +3,64 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LLA Meta Banners — Gallery</title>
+<title>LLA Meta Banners &middot; Gallery</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tabs_funnel.css">
+<link rel="stylesheet" href="tabs_video.css">
 <style>
   :root {
     --bg:#020B1C; --bg2:#03132E; --line:rgba(232,167,90,.35); --gold:#E8A75A; --blue:#006EFF; --lb:#7EC8FF; --lb2:#A9CFFF;
   }
   * { box-sizing:border-box; }
-  html,body { margin:0; padding:0; background:var(--bg); color:#fff; font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  html,body { margin:0; padding:0; background:var(--bg); color:#fff; font-family:'Inter Tight',system-ui,sans-serif; -webkit-font-smoothing:antialiased; font-size:17px; }
   a { color:inherit; }
-  header { padding:36px 40px 20px; border-bottom:1px solid rgba(255,255,255,.06); background:linear-gradient(180deg,#04173A 0%,#020B1C 100%); }
-  header .row { display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; max-width:1440px; margin:0 auto; }
-  header img.logo { height:54px; }
-  header h1 { font-family:'Instrument Serif',serif; font-weight:400; font-size:38px; margin:14px 0 6px; letter-spacing:-.01em; }
-  header h1 i { color:var(--lb2); }
-  header p { margin:0; color:rgba(255,255,255,.65); font-size:15px; letter-spacing:.02em; }
-  header .meta { display:flex; gap:20px; align-items:center; color:rgba(255,255,255,.55); font-size:13px; }
+  header { padding:44px 40px 26px; border-bottom:1px solid rgba(255,255,255,.06); background:linear-gradient(180deg,#04173A 0%,#020B1C 100%); position:relative; overflow:hidden; }
+  header::before { content:''; position:absolute; top:-120px; left:50%; width:820px; height:420px; background:radial-gradient(circle,rgba(0,110,255,.28),transparent 70%); transform:translateX(-50%); pointer-events:none; }
+  header .row { display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; max-width:1440px; margin:0 auto; position:relative; z-index:1; }
+  header .brandmark { display:flex; align-items:center; gap:16px; margin-bottom:22px; }
+  header .brandmark img.logo { height:46px; display:block; }
+  header .brandmark .divider { width:1px; height:32px; background:rgba(255,255,255,.14); }
+  header .brandmark img.eteacher { height:26px; display:block; opacity:.85; }
+  header h1 { font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(34px,5vw,58px); line-height:1.05; margin:0 0 10px; letter-spacing:-.01em; }
+  header h1 i { color:var(--lb2); font-style:italic; }
+  header p { margin:0; color:rgba(255,255,255,.68); font-size:17px; letter-spacing:.01em; line-height:1.5; max-width:640px; }
+  header .meta { display:flex; gap:20px; align-items:center; color:rgba(255,255,255,.55); font-size:15px; }
   header .meta b { color:var(--gold); font-weight:700; }
 
-  .tabs { position:sticky; top:0; z-index:30; background:rgba(2,11,28,.88); backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,.08); padding:14px 40px; }
-  .tabs .inner { display:flex; gap:8px; max-width:1440px; margin:0 auto; align-items:center; flex-wrap:wrap; }
-  .tab { padding:10px 22px; border-radius:999px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); color:rgba(255,255,255,.7); font-weight:600; font-size:14.5px; cursor:pointer; letter-spacing:.03em; transition:all .18s; }
-  .tab:hover { color:#fff; border-color:rgba(255,255,255,.2); }
-  .tab.active { background:linear-gradient(135deg,#3A8DFF,#006EFF); color:#fff; border-color:transparent; box-shadow:0 4px 20px rgba(0,110,255,.4); }
-  .tab small { display:block; font-size:11px; font-weight:500; opacity:.8; letter-spacing:.08em; text-transform:uppercase; margin-top:2px; }
-  .tabs .spacer { flex:1; }
-  .tabs .dl-all { padding:9px 18px; border-radius:8px; background:rgba(232,167,90,.12); border:1px solid var(--line); color:var(--gold); font-weight:700; font-size:13px; cursor:pointer; text-decoration:none; letter-spacing:.05em; }
+  .tabs { position:sticky; top:0; z-index:30; background:rgba(2,11,28,.92); backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,.08); padding:14px 40px; }
+  .tabs .inner { display:flex; gap:8px; max-width:1440px; margin:0 auto; align-items:center; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:thin; scrollbar-color:rgba(0,110,255,.5) transparent; -webkit-overflow-scrolling:touch; padding-bottom:4px; }
+  .tabs .inner::-webkit-scrollbar { height:6px; }
+  .tabs .inner::-webkit-scrollbar-thumb { background:rgba(0,110,255,.45); border-radius:999px; }
+  .tabs .inner::-webkit-scrollbar-track { background:transparent; }
+  .tab { flex:0 0 auto; white-space:nowrap; padding:12px 24px; border-radius:999px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); color:rgba(255,255,255,.7); font-weight:600; font-size:15px; cursor:pointer; letter-spacing:.02em; transition:background .22s ease, color .22s ease, border-color .22s ease, box-shadow .22s ease, transform .22s ease; position:relative; }
+  .tab:hover { color:#fff; border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.06); }
+  .tab:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+  .tab.active { background:linear-gradient(135deg,#3A8DFF,var(--blue)); color:#fff; border-color:transparent; box-shadow:0 4px 22px rgba(0,110,255,.5), 0 0 0 1px rgba(0,110,255,.3), 0 0 34px rgba(0,110,255,.35); }
+  .tab small { display:block; font-size:11.5px; font-weight:500; opacity:.85; letter-spacing:.07em; text-transform:uppercase; margin-top:3px; white-space:nowrap; }
+  .tabs .spacer { flex:0 0 12px; }
+  .tabs .dl-all { flex:0 0 auto; padding:9px 18px; border-radius:8px; background:rgba(232,167,90,.12); border:1px solid var(--line); color:var(--gold); font-weight:700; font-size:14px; cursor:pointer; text-decoration:none; letter-spacing:.04em; white-space:nowrap; }
   .tabs .dl-all:hover { background:rgba(232,167,90,.2); }
+  @media (prefers-reduced-motion: reduce) {
+    .tab, .btn, * { transition:none !important; scroll-behavior:auto !important; }
+  }
 
   .version { display:none; padding:36px 40px 80px; max-width:1440px; margin:0 auto; }
   .version.active { display:block; }
-  .version .lead { color:rgba(255,255,255,.65); font-size:15px; max-width:800px; margin:0 0 30px; line-height:1.55; }
+  .version .lead { color:rgba(255,255,255,.7); font-size:17px; max-width:800px; margin:0 0 30px; line-height:1.6; }
   .version .lead b { color:var(--gold); font-weight:700; }
+
+  .panel-empty { border:1px dashed rgba(255,255,255,.14); border-radius:16px; padding:60px 32px; text-align:center; color:rgba(255,255,255,.4); font-size:15px; letter-spacing:.02em; }
+  #panel-julie-video:empty::after, #panel-courtney-video:empty::after, #panel-self-service:empty::after, #panel-full-funnel:empty::after, #panel-omri:empty::after {
+    content:'Content for this tab is prepared separately and will appear here.';
+    display:block; border:1px dashed rgba(255,255,255,.14); border-radius:16px; padding:60px 32px; text-align:center; color:rgba(255,255,255,.4); font-size:15px; letter-spacing:.02em;
+  }
 
   .banner-card { background:linear-gradient(180deg,#03132E 0%,#010B1E 100%); border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:26px; margin-bottom:26px; }
   .banner-title { display:flex; align-items:baseline; justify-content:space-between; gap:14px; padding-bottom:16px; margin-bottom:20px; border-bottom:1px solid rgba(232,167,90,.18); }
   .banner-title .name { font-family:'Instrument Serif',serif; font-size:26px; letter-spacing:-.01em; }
-  .banner-title .name span { color:var(--gold); font-weight:600; font-family:'Inter',sans-serif; font-size:13px; letter-spacing:.14em; text-transform:uppercase; margin-right:14px; vertical-align:middle; }
+  .banner-title .name span { color:var(--gold); font-weight:600; font-family:'Inter Tight',sans-serif; font-size:13px; letter-spacing:.14em; text-transform:uppercase; margin-right:14px; vertical-align:middle; }
   .banner-title .id { color:rgba(255,255,255,.35); font-size:12px; letter-spacing:.12em; text-transform:uppercase; }
 
   .sizes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; align-items:start; }
@@ -72,20 +92,32 @@
   @media (max-width:640px) {
     header, .tabs, .version { padding-left:20px; padding-right:20px; }
     .sizes-grid { grid-template-columns:1fr; }
+    header .brandmark img.logo { height:36px; }
+    header .brandmark img.eteacher { height:20px; }
+    header h1 { font-size:clamp(28px,7vw,36px); }
+    .tab { padding:11px 18px; font-size:15px; }
+    .tab small { font-size:11px; }
+    .tabs { padding:12px 20px; }
   }
 </style>
+<script src="video_manifest.js"></script>
+<script src="ad_copy_loader.js"></script>
 </head>
 <body>
 
 <header>
   <div class="row">
     <div>
-      <img class="logo" src="assets/lla_logo.png" alt="Longevity Life Academy">
+      <div class="brandmark">
+        <img class="logo" src="assets/lla_logo.png" alt="Longevity Life Academy">
+        <div class="divider"></div>
+        <img class="eteacher" src="assets/eteacher_logo.png" alt="eTeacher Group">
+      </div>
       <h1>Meta &amp; Instagram Ad <i>Banner Gallery</i></h1>
-      <p>Every banner in 4 real Meta/IG ad sizes — final <b>Chosen Banners</b> set ready for upload.</p>
+      <p>Every banner, every real Meta and Instagram ad size, plus the video and funnel work for this campaign, all in one place.</p>
     </div>
     <div class="meta">
-      <div><b>7</b> versions · <b>58</b> banners · <b>4</b> sizes · <b>232</b> creatives</div>
+      <div><b>12</b> tabs &middot; <b>7</b> banner versions &middot; <b>232</b> creatives</div>
     </div>
   </div>
 </header>
@@ -99,44 +131,1192 @@
     <button class="tab" data-version="v6">Version 6<small>Alt copy · final design · 10 banners</small></button>
     <button class="tab" data-version="v7">Version 7<small>Alt copy · final design · 10 banners</small></button>
     <button class="tab active" data-version="chosen">Chosen Banners<small>Final corrected set · 6 banners</small></button>
+    <button class="tab" data-version="julie-video">Julie Video<small>Video creative</small></button>
+    <button class="tab" data-version="courtney-video">Courtney Video<small>Video creative</small></button>
+    <button class="tab" data-version="self-service">Self-Service Funnel<small>Funnel walkthrough</small></button>
+    <button class="tab" data-version="full-funnel">Ecommerce Full Funnel<small>Funnel walkthrough</small></button>
+    <button class="tab" data-version="omri">Omri<small>Working notes</small></button>
     <div class="spacer"></div>
   </div>
 </nav>
 
 <section class="version" id="version-v1">
-  <p class="lead">Alternate copy set in the FINAL approved design — habit-focused headlines ("Make longevity automatic", "Willpower fails. Habits don't.", "He's my son."). Same site-hero lockup, luxury serif headline, Blueprint stat chips, Trustpilot and gold credential as the Chosen set. All 4 paid sizes per banner, full resolution.</p>
+  <p class="lead">Alternate copy set in the FINAL approved design, habit-focused headlines ("Make longevity automatic", "Willpower fails. Habits don't.", "He's my son."). Same site-hero lockup, luxury serif headline, Blueprint stat chips, Trustpilot and gold credential as the Chosen set. All 4 paid sizes per banner, full resolution.</p>
   <div id="cards-v1"></div>
 </section>
 
 <section class="version" id="version-v2">
-  <p class="lead">Alternate copy set in the FINAL approved design — verbatim press quotes from Julie ("I only age eight months", "Eat right. Move. Optimise your cells.", "65 days younger every year"). Same layout and finish as the Chosen set. All 4 paid sizes per banner, full resolution.</p>
+  <p class="lead">Alternate copy set in the FINAL approved design, verbatim press quotes from Julie ("I only age eight months", "Eat right. Move. Optimise your cells.", "65 days younger every year"). Same layout and finish as the Chosen set. All 4 paid sizes per banner, full resolution.</p>
   <div id="cards-v2"></div>
 </section>
 
 <section class="version" id="version-v3">
-  <p class="lead">Alternate copy set in the FINAL approved design — action-first headlines ("Build habits that outlast willpower", "You cannot biohack a good night's sleep", "Stay strong for the people who need you") plus the <b>Julie vs Bryan Johnson</b> comparison. All 4 paid sizes per banner, full resolution.</p>
+  <p class="lead">Alternate copy set in the FINAL approved design, action-first headlines ("Build habits that outlast willpower", "You cannot biohack a good night's sleep", "Stay strong for the people who need you") plus the <b>Julie vs Bryan Johnson</b> comparison. All 4 paid sizes per banner, full resolution.</p>
   <div id="cards-v3"></div>
 </section>
 
 
 <section class="version" id="version-v4">
-  <p class="lead">Alternate copy set in the FINAL approved design — habit and purpose headlines from Julie's scripts ("Small habits. Kept for years.", "Find your reason. Then live longer for it.", "Be there for the people who need you.") plus the <b>Julie vs Bryan Johnson</b> comparison. All 4 paid sizes per banner, full resolution.</p>
+  <p class="lead">Alternate copy set in the FINAL approved design, habit and purpose headlines from Julie's scripts ("Small habits. Kept for years.", "Find your reason. Then live longer for it.", "Be there for the people who need you.") plus the <b>Julie vs Bryan Johnson</b> comparison. All 4 paid sizes per banner, full resolution.</p>
   <div id="cards-v4"></div>
 </section>
 
 <section class="version" id="version-v6">
-  <p class="lead">Alternate copy set in the FINAL approved design — transformational hooks ("Age slower. Starting with your habits.", "Live long. Live strong. Be there.", "Slow your biological age.") plus the <b>Julie vs Bryan Johnson</b> comparison. All 4 paid sizes per banner, full resolution.</p>
+  <p class="lead">Alternate copy set in the FINAL approved design, transformational hooks ("Age slower. Starting with your habits.", "Live long. Live strong. Be there.", "Slow your biological age.") plus the <b>Julie vs Bryan Johnson</b> comparison. All 4 paid sizes per banner, full resolution.</p>
   <div id="cards-v6"></div>
 </section>
 
 <section class="version" id="version-v7">
-  <p class="lead">Same copy as Version 6 in the FINAL approved design — a second full set for A/B rotation so identical messages can run as separate ad creatives. All 4 paid sizes per banner, full resolution.</p>
+  <p class="lead">Same copy as Version 6 in the FINAL approved design, a second full set for A/B rotation so identical messages can run as separate ad creatives. All 4 paid sizes per banner, full resolution.</p>
   <div id="cards-v7"></div>
 </section>
 
 <section class="version active" id="version-chosen">
-  <p class="lead">FINAL approved set — site-hero brand lockup (Longevity Life Academy · by eTeacher Group), dominant luxury serif headline, <b>The Longevity Blueprint</b> with live green stat chips (18 Live Sessions · 100% Online), Trustpilot 4.6/5 · 600+ reviews, and the <b>gold “2nd Slowest-Aging Person on Earth” credential</b> beside Julie. Every Meta / Instagram paid size: 1:1 (1080×1080), 4:5 (1080×1350), 9:16 (1080×1920), 1.91:1 (1200×628). Full resolution, nothing cut — hit Download on each card.</p>
+  <p class="lead">FINAL approved set, site-hero brand lockup (Longevity Life Academy · by eTeacher Group), dominant luxury serif headline, <b>The Longevity Blueprint</b> with live green stat chips (18 Live Sessions · 100% Online), Trustpilot 4.6/5 · 600+ reviews, and the <b>gold “2nd Slowest-Aging Person on Earth” credential</b> beside Julie. Every Meta / Instagram paid size: 1:1 (1080×1080), 4:5 (1080×1350), 9:16 (1080×1920), 1.91:1 (1200×628). Full resolution, nothing cut, hit Download on each card.</p>
   <div id="cards-chosen"></div>
+</section>
+
+<section class="version" id="version-julie-video">
+  <p class="lead">Video creative built around Julie, ready for review.</p>
+  <div id="panel-julie-video" class="panel">
+<section class="jv-root" id="tab-julie" data-tab="julie">
+  <div class="jv-grid" aria-hidden="true"></div>
+  <span class="jv-numeral" aria-hidden="true">01</span>
+
+  <header class="jv-head jv-reveal">
+    <h2 class="jv-title">Julie, the <em>master cut</em> and every resize.</h2>
+    <p class="jv-sub">This tab renders directly from the shared media manifest. The moment a Julie cut lands in production, it appears here automatically with no template changes.</p>
+  </header>
+
+  <div id="jv-stats-mount" class="jv-stats jv-reveal" aria-hidden="true"></div>
+
+  <div id="jv-body-mount"></div>
+
+  <template id="jv-empty-template">
+    <div class="jv-empty jv-reveal">
+      <p class="jv-empty-title">No cuts in the manifest yet</p>
+      <p class="jv-empty-sub">Julie's video assets are still in production. This tab is fully wired to <code>window.LLA_MEDIA.julie</code> and will populate the player, stat chips, and storyboards the moment real entries are added to the manifest.</p>
+    </div>
+  </template>
+
+  <template id="jv-cut-template">
+    <div class="jv-cut jv-reveal">
+      <p class="jv-cut-label"></p>
+      <div class="jv-stage">
+        <div class="jv-player-wrap">
+          <div class="jv-player-inner">
+            <video class="jv-video" controls preload="metadata" playsinline></video>
+          </div>
+        </div>
+        <p class="jv-specline"></p>
+        <div class="jv-dl-row">
+          <a class="jv-dl" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+            Download master file
+          </a>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="jv-board-card-template">
+    <div class="jv-board-card jv-reveal">
+      <p class="jv-board-title"></p>
+      <p class="jv-board-meta"></p>
+      <object class="jv-board-frame" type="application/pdf">
+        <iframe class="jv-board-frame" title="Storyboard preview"></iframe>
+      </object>
+      <div class="jv-board-actions">
+        <a class="jv-dl" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+          Download storyboard PDF
+        </a>
+      </div>
+    </div>
+  </template>
+</section>
+
+<script>
+(function(){
+  function bytesToSize(bytes){
+    if (!bytes) return '';
+    var mb = bytes / (1024*1024);
+    return mb >= 1000 ? (mb/1024).toFixed(2) + ' GB' : mb.toFixed(1) + ' MB';
+  }
+  function fmtDuration(sec){
+    if (!sec && sec !== 0) return '';
+    var m = Math.floor(sec/60), s = Math.round(sec%60);
+    return m + ':' + String(s).padStart(2,'0');
+  }
+
+  function render(){
+    var data = (window.LLA_MEDIA && window.LLA_MEDIA.julie) || { cuts: [], storyboards: [] };
+    var statsMount = document.getElementById('jv-stats-mount');
+    var bodyMount = document.getElementById('jv-body-mount');
+    if (!statsMount || !bodyMount) return;
+
+    var cuts = data.cuts || [];
+    var boards = data.storyboards || [];
+
+    if (cuts.length === 0){
+      statsMount.innerHTML = '';
+      var emptyTpl = document.getElementById('jv-empty-template');
+      bodyMount.appendChild(emptyTpl.content.cloneNode(true));
+    } else {
+      var primary = cuts[0];
+      statsMount.innerHTML =
+        '<div class="jv-chip"><span class="jv-chip-num">' + fmtDuration(primary.duration) + '</span><span class="jv-chip-label">Runtime</span></div>' +
+        '<div class="jv-chip"><span class="jv-chip-num">' + primary.w + '&times;' + primary.h + '</span><span class="jv-chip-label">Resolution</span></div>' +
+        '<div class="jv-chip"><span class="jv-chip-num">' + (primary.fps || '') + ' fps</span><span class="jv-chip-label">Frame rate</span></div>' +
+        '<div class="jv-chip"><span class="jv-chip-num">' + bytesToSize(primary.bytes) + '</span><span class="jv-chip-label">File size</span></div>';
+
+      var cutsWrap = document.createElement('div');
+      cutsWrap.className = 'jv-cuts';
+      var cutTpl = document.getElementById('jv-cut-template');
+
+      cuts.forEach(function(cut){
+        var node = cutTpl.content.cloneNode(true);
+        node.querySelector('.jv-cut-label').textContent = cut.label;
+        var video = node.querySelector('.jv-video');
+        video.src = cut.src;
+        video.poster = cut.poster || '';
+        video.width = cut.w;
+        video.height = cut.h;
+        var specline = node.querySelector('.jv-specline');
+        specline.innerHTML =
+          '<span>' + fmtDuration(cut.duration) + '</span><span class="jv-dot">&middot;</span>' +
+          '<span>' + cut.w + '&times;' + cut.h + '</span><span class="jv-dot">&middot;</span>' +
+          '<span>' + (cut.fps || '') + ' fps</span><span class="jv-dot">&middot;</span>' +
+          '<span>' + (cut.audio || '') + '</span><span class="jv-dot">&middot;</span>' +
+          '<span>' + bytesToSize(cut.bytes) + '</span>';
+        var dl = node.querySelector('.jv-dl');
+        dl.href = cut.src;
+        dl.setAttribute('download', cut.filename || cut.label);
+        cutsWrap.appendChild(node);
+      });
+      bodyMount.appendChild(cutsWrap);
+
+      if (boards.length){
+        var boardsSection = document.createElement('div');
+        boardsSection.className = 'jv-boards';
+        boardsSection.innerHTML = '<h3 class="jv-boards-head jv-reveal">Storyboards</h3><p class="jv-boards-sub jv-reveal">Full frame by frame breakdown for every cut.</p>';
+        var grid = document.createElement('div');
+        grid.className = 'jv-board-grid';
+        var boardTpl = document.getElementById('jv-board-card-template');
+        boards.forEach(function(b){
+          var node = boardTpl.content.cloneNode(true);
+          node.querySelector('.jv-board-title').textContent = b.label;
+          node.querySelector('.jv-board-meta').textContent = (b.pages ? b.pages + ' pages' : '') + (b.bytes ? ' \u00b7 ' + bytesToSize(b.bytes) : '');
+          var obj = node.querySelector('object.jv-board-frame');
+          obj.data = b.src;
+          var iframe = node.querySelector('iframe.jv-board-frame');
+          iframe.src = b.src;
+          var dl = node.querySelector('.jv-dl');
+          dl.href = b.src;
+          dl.setAttribute('download', b.filename || b.label);
+          grid.appendChild(node);
+        });
+        boardsSection.appendChild(grid);
+        bodyMount.appendChild(boardsSection);
+      }
+    }
+
+    // reveal on scroll
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('#tab-julie .jv-reveal');
+    if (reduceMotion || !('IntersectionObserver' in window)){
+      targets.forEach(function(t){ t.classList.add('jv-in'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            entry.target.classList.add('jv-in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      targets.forEach(function(t){ io.observe(t); });
+    }
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', render);
+  } else {
+    render();
+  }
+})();
+</script>
+
+</div>
+</section>
+
+<section class="version" id="version-courtney-video">
+  <p class="lead">Video creative built around Courtney, ready for review.</p>
+  <div id="panel-courtney-video" class="panel">
+<section class="cv-root" id="tab-courtney" data-tab="courtney">
+  <div class="cv-grid" aria-hidden="true"></div>
+  <span class="cv-numeral" aria-hidden="true">02</span>
+
+  <header class="cv-head cv-reveal">
+    <h2 class="cv-title">Courtney, the <em>master</em> and the 90 second cut.</h2>
+    <p class="cv-sub">Both edits, both storyboards, one page. Every number below is read from the file itself, not typed in by hand.</p>
+  </header>
+
+  <div id="cv-stats-mount" class="cv-stats cv-reveal"></div>
+
+  <div id="cv-body-mount"></div>
+
+  <template id="cv-cut-template">
+    <div class="cv-cut cv-reveal">
+      <p class="cv-cut-label"></p>
+      <div class="cv-stage">
+        <div class="cv-player-wrap">
+          <div class="cv-player-inner">
+            <video class="cv-video" controls preload="metadata" playsinline></video>
+          </div>
+        </div>
+        <p class="cv-specline"></p>
+        <div class="cv-dl-row">
+          <a class="cv-dl" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+            Download master file
+          </a>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="cv-board-card-template">
+    <div class="cv-board-card cv-reveal">
+      <p class="cv-board-title"></p>
+      <p class="cv-board-meta"></p>
+      <object class="cv-board-frame" type="application/pdf">
+        <iframe class="cv-board-frame" title="Storyboard preview"></iframe>
+      </object>
+      <div class="cv-board-actions">
+        <a class="cv-dl" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+          Download storyboard PDF
+        </a>
+      </div>
+    </div>
+  </template>
+</section>
+
+<script>
+(function(){
+  function bytesToSize(bytes){
+    if (!bytes) return '';
+    var mb = bytes / (1024*1024);
+    return mb >= 1000 ? (mb/1024).toFixed(2) + ' GB' : mb.toFixed(1) + ' MB';
+  }
+  function fmtDuration(sec){
+    if (!sec && sec !== 0) return '';
+    var m = Math.floor(sec/60), s = Math.round(sec%60);
+    return m + ':' + String(s).padStart(2,'0');
+  }
+
+  function render(){
+    var data = (window.LLA_MEDIA && window.LLA_MEDIA.courtney) || { cuts: [], storyboards: [] };
+    var statsMount = document.getElementById('cv-stats-mount');
+    var bodyMount = document.getElementById('cv-body-mount');
+    if (!statsMount || !bodyMount) return;
+
+    var cuts = data.cuts || [];
+    var boards = data.storyboards || [];
+
+    if (cuts.length === 0){
+      statsMount.innerHTML = '';
+      var empty = document.createElement('div');
+      empty.className = 'cv-empty cv-reveal';
+      empty.innerHTML = '<p class="cv-empty-title">No cuts in the manifest yet</p><p class="cv-empty-sub">This tab is fully wired to window.LLA_MEDIA.courtney and renders whatever is listed there.</p>';
+      bodyMount.appendChild(empty);
+    } else {
+      var primary = cuts[0];
+      statsMount.innerHTML =
+        '<div class="cv-chip"><span class="cv-chip-num">' + fmtDuration(primary.duration) + '</span><span class="cv-chip-label">Runtime</span></div>' +
+        '<div class="cv-chip"><span class="cv-chip-num">' + primary.w + '&times;' + primary.h + '</span><span class="cv-chip-label">Resolution</span></div>' +
+        '<div class="cv-chip"><span class="cv-chip-num">' + (primary.fps || '') + ' fps</span><span class="cv-chip-label">Frame rate</span></div>' +
+        '<div class="cv-chip"><span class="cv-chip-num">' + bytesToSize(primary.bytes) + '</span><span class="cv-chip-label">File size</span></div>';
+
+      var cutsWrap = document.createElement('div');
+      cutsWrap.className = 'cv-cuts';
+      var cutTpl = document.getElementById('cv-cut-template');
+
+      cuts.forEach(function(cut){
+        var node = cutTpl.content.cloneNode(true);
+        node.querySelector('.cv-cut-label').textContent = cut.label;
+        var video = node.querySelector('.cv-video');
+        video.src = cut.src;
+        video.poster = cut.poster || '';
+        video.width = cut.w;
+        video.height = cut.h;
+        var specline = node.querySelector('.cv-specline');
+        specline.innerHTML =
+          '<span>' + fmtDuration(cut.duration) + '</span><span class="cv-dot">&middot;</span>' +
+          '<span>' + cut.w + '&times;' + cut.h + '</span><span class="cv-dot">&middot;</span>' +
+          '<span>' + (cut.fps || '') + ' fps</span><span class="cv-dot">&middot;</span>' +
+          '<span>' + (cut.audio || '') + '</span><span class="cv-dot">&middot;</span>' +
+          '<span>' + bytesToSize(cut.bytes) + '</span>';
+        var dl = node.querySelector('.cv-dl');
+        dl.href = cut.src;
+        dl.setAttribute('download', cut.filename || cut.label);
+        cutsWrap.appendChild(node);
+      });
+      bodyMount.appendChild(cutsWrap);
+
+      if (boards.length){
+        var boardsSection = document.createElement('div');
+        boardsSection.className = 'cv-boards';
+        boardsSection.innerHTML = '<h3 class="cv-boards-head cv-reveal">Storyboards</h3><p class="cv-boards-sub cv-reveal">Full frame by frame breakdown for both edits.</p>';
+        var grid = document.createElement('div');
+        grid.className = 'cv-board-grid';
+        var boardTpl = document.getElementById('cv-board-card-template');
+        boards.forEach(function(b){
+          var node = boardTpl.content.cloneNode(true);
+          node.querySelector('.cv-board-title').textContent = b.label;
+          node.querySelector('.cv-board-meta').textContent = (b.pages ? b.pages + ' pages' : '') + (b.bytes ? ' \u00b7 ' + bytesToSize(b.bytes) : '');
+          var obj = node.querySelector('object.cv-board-frame');
+          obj.data = b.src;
+          var iframe = node.querySelector('iframe.cv-board-frame');
+          iframe.src = b.src;
+          var dl = node.querySelector('.cv-dl');
+          dl.href = b.src;
+          dl.setAttribute('download', b.filename || b.label);
+          grid.appendChild(node);
+        });
+        boardsSection.appendChild(grid);
+        bodyMount.appendChild(boardsSection);
+      }
+
+      if (data.proof){
+        var proofSection = document.createElement('div');
+        proofSection.className = 'cv-boards';
+        proofSection.innerHTML = '<h3 class="cv-boards-head cv-reveal">Lipsync proof</h3>' +
+          '<div class="cv-board-card cv-reveal" style="max-width:900px;margin:0 auto;">' +
+          '<img src="' + data.proof.src + '" alt="' + data.proof.label + '" style="width:100%;height:auto;border-radius:12px;display:block;">' +
+          '<div class="cv-board-actions"><a class="cv-dl" href="' + data.proof.src + '" download="' + data.proof.filename + '">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>' +
+          'Download proof image</a></div></div>';
+        bodyMount.appendChild(proofSection);
+      }
+    }
+
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('#tab-courtney .cv-reveal');
+    if (reduceMotion || !('IntersectionObserver' in window)){
+      targets.forEach(function(t){ t.classList.add('cv-in'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            entry.target.classList.add('cv-in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      targets.forEach(function(t){ io.observe(t); });
+    }
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', render);
+  } else {
+    render();
+  }
+})();
+</script>
+
+</div>
+</section>
+
+<section class="version" id="version-self-service">
+  <p class="lead">Self-service signup funnel, step by step.</p>
+  <div id="panel-self-service" class="panel">
+<section class="sf-tab" id="tab-self-service-funnel" data-tab-label="Self-Service Funnel">
+
+  <!-- HERO -->
+  <div class="sf-section sf-section--black">
+    <div class="sf-mgrid"></div>
+    <div class="sf-orb" style="width:820px;height:820px;left:-220px;top:-260px;background:radial-gradient(circle,rgba(0,110,255,.42),transparent 68%)"></div>
+    <div class="sf-orb" style="width:600px;height:600px;right:-160px;top:120px;background:radial-gradient(circle,rgba(94,182,255,.26),transparent 70%)"></div>
+    <span class="sf-num sf-num--r">01</span>
+    <div class="sf-wrap">
+      <p class="sf-stage">The store, live, watched top to bottom</p>
+      <h1 class="sf-h1 sf-reveal">A buyer can register, choose a course and pay without anyone on the phone.</h1>
+      <p class="sf-lede sf-reveal">The Longevity Blueprint sells itself on the real store page below, at $289 a month against a published $360, or $1,399 paid in full.</p>
+      <div class="sf-stats sf-reveal">
+        <div class="sf-chip"><div class="n">$289</div><div class="l">founder rate per month, live on the store page</div></div>
+        <div class="sf-chip"><div class="n">$360</div><div class="l">published tuition per month, shown struck through</div></div>
+        <div class="sf-chip"><div class="n">$1,399</div><div class="l">paid in full, a 28 percent saving against $360</div></div>
+        <div class="sf-chip"><div class="n">14</div><div class="l">day enrollment guarantee, keep the CGM regardless</div></div>
+        <div class="sf-chip"><div class="n">18</div><div class="l">live weekly sessions across 4 phases</div></div>
+      </div>
+      <div class="sf-btnrow sf-reveal">
+        <a class="sf-btn sf-btn--primary" href="https://www.longevitylifeacademy.com/store/longevity-blueprint/" target="_blank" rel="noopener">
+          Open The Live Store Page
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="sf-btn sf-btn--ghost" href="https://www.longevitylifeacademy.com/store/longevity-blueprint/checkout.html" target="_blank" rel="noopener">
+          Open The Checkout
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEVICE STAGE -->
+  <div class="sf-section sf-section--navy" id="sf-device-stage">
+    <div class="sf-mgrid"></div>
+    <div class="sf-wrap">
+      <p class="sf-stage">The real page, scrolling on its own</p>
+      <h2 class="sf-h2 sf-reveal">Untouched, autoplaying, the whole store page passes in front of you.</h2>
+      <p class="sf-lede sf-reveal">Hover either frame to pause. Use the control to resume. Nothing here is a screenshot dressed up, this is the live longevitylifeacademy.com store page.</p>
+
+      <div class="sf-stage-devices sf-reveal" id="sf-stage-devices">
+        <div>
+          <div class="sf-browser" id="sf-browser">
+            <div class="sf-browser-bar">
+              <div class="sf-dots"><span></span><span></span><span></span></div>
+              <div class="sf-browser-url">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a5 5 0 00-5-5zm-3 8V7a3 3 0 116 0v3H9z"/></svg>
+                <span>www.longevitylifeacademy.com/store/longevity-blueprint/</span>
+              </div>
+              <div class="sf-browser-controls">
+                <button class="sf-scrollctl" type="button" aria-label="Play or pause the desktop autoscroll" data-sf-toggle="sf-browser">
+                  <svg class="sf-icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14M16 5v14"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="sf-browser-view">
+              <div class="sf-scrollframe" style="--sf-scroll-d:-4600px">
+                <iframe src="https://www.longevitylifeacademy.com/store/longevity-blueprint/" loading="lazy" title="Live store page, desktop render" style="transform:scale(0.4444)"></iframe>
+              </div>
+            </div>
+          </div>
+          <div class="sf-browser-caption">
+            <span>Desktop render, 1440px wide, scaled to fit the frame</span>
+            <b>Live store page</b>
+          </div>
+        </div>
+
+        <div>
+          <div class="sf-phone" id="sf-phone">
+            <div class="sf-phone-notch"></div>
+            <div class="sf-phone-side"></div>
+            <div class="sf-phone-screen">
+              <div class="sf-scrollframe" style="--sf-scroll-m:-6200px">
+                <iframe src="https://www.longevitylifeacademy.com/store/longevity-blueprint/" loading="lazy" title="Live store page, mobile render"></iframe>
+              </div>
+            </div>
+          </div>
+          <p class="sf-phone-caption">Mobile render, 390px wide, same live URL</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUYER PATH TIMELINE -->
+  <div class="sf-section sf-section--black">
+    <div class="sf-mgrid"></div>
+    <span class="sf-num sf-num--l">02</span>
+    <div class="sf-wrap">
+      <p class="sf-stage">The buyer path, start to finish</p>
+      <h2 class="sf-h2 sf-reveal">Four screens carry a stranger to a paid student.</h2>
+      <div class="sf-timeline sf-reveal">
+        <div class="sf-timeline-track"></div>
+        <div class="sf-timeline-steps">
+          <div class="sf-tstep">
+            <span class="tk">Screen 1</span>
+            <h4>Registers on the store page</h4>
+            <p>Reads the offer, the 18 week curriculum in 4 phases, the faculty and the Trustpilot proof, then registers before a course is chosen.</p>
+          </div>
+          <div class="sf-tstep">
+            <span class="tk">Screen 2</span>
+            <h4>Chooses a course</h4>
+            <p>Selects a cohort of 8 to 15 students against the $289 founder rate, published at $360 a month or $1,399 in full.</p>
+          </div>
+          <div class="sf-tstep">
+            <span class="tk">Screen 3</span>
+            <h4>Reaches checkout</h4>
+            <p>Opens the real checkout page, enters payment details, sees the 14 day enrollment guarantee and the free Abbott Lingo CGM shipped before Lesson 5.</p>
+          </div>
+          <div class="sf-tstep">
+            <span class="tk">Screen 4</span>
+            <h4>Becomes a paying student</h4>
+            <p>Payment completes, platform login arrives immediately, class selection is locked and the CGM ships to arrive before Lesson 5.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+(function(){
+  var root = document.getElementById('tab-self-service-funnel');
+  if(!root || root.__sfWired) return;
+  root.__sfWired = true;
+
+  var toggles = root.querySelectorAll('[data-sf-toggle]');
+  toggles.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var targetId = btn.getAttribute('data-sf-toggle');
+      var frame = document.getElementById(targetId);
+      if(!frame) return;
+      frame.classList.toggle('sf-force-paused');
+      var scrollEls = frame.querySelectorAll('.sf-scrollframe');
+      scrollEls.forEach(function(el){
+        el.style.animationPlayState = frame.classList.contains('sf-force-paused') ? 'paused' : 'running';
+      });
+      var icon = btn.querySelector('svg');
+      if(icon){
+        icon.innerHTML = frame.classList.contains('sf-force-paused')
+          ? '<path d="M6 4l14 8-14 8V4z" fill="currentColor" stroke="none"/>'
+          : '<path d="M8 5v14M16 5v14"/>';
+      }
+    });
+  });
+
+  if(!('IntersectionObserver' in window)){
+    root.querySelectorAll('.sf-reveal').forEach(function(el){ el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  var sfRevealEls = root.querySelectorAll('.sf-reveal');
+  sfRevealEls.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){
+    sfRevealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }, 2600);
+})();
+</script>
+
+</div>
+</section>
+
+<section class="version" id="version-full-funnel">
+  <p class="lead">Full ecommerce funnel from first click to purchase.</p>
+  <div id="panel-full-funnel" class="panel">
+<section class="ff-tab" id="tab-ecommerce-full-funnel" data-tab-label="Ecommerce Full Funnel">
+
+  <!-- HERO -->
+  <div class="ff-section ff-section--black">
+    <div class="ff-mgrid"></div>
+    <div class="ff-orb" style="width:820px;height:820px;left:-220px;top:-260px;background:radial-gradient(circle,rgba(0,110,255,.42),transparent 68%)"></div>
+    <div class="ff-orb" style="width:600px;height:600px;right:-160px;top:80px;background:radial-gradient(circle,rgba(94,182,255,.26),transparent 70%)"></div>
+    <span class="ff-num ff-num--r">02</span>
+    <div class="ff-wrap">
+      <p class="ff-stage">Every drop-off, followed for 7 days</p>
+      <h1 class="ff-h1 ff-reveal">Three drop-off points, eight recovery emails, seven days of retargeting.</h1>
+      <p class="ff-lede ff-reveal">No one leaves the funnel quietly. Email, Meta and Instagram carry the $289 founder rate back to them for a full week.</p>
+      <div class="ff-stats ff-reveal">
+        <div class="ff-chip"><div class="n">3</div><div class="l">drop-off points covered end to end</div></div>
+        <div class="ff-chip"><div class="n">8</div><div class="l">recovery emails written and built</div></div>
+        <div class="ff-chip"><div class="n">45m</div><div class="l">fastest first email, sent to Segment A</div></div>
+        <div class="ff-chip"><div class="n">7</div><div class="l">days of Meta and Instagram retargeting</div></div>
+        <div class="ff-chip"><div class="n">10</div><div class="l">touches in 7 days, maximum per person</div></div>
+        <div class="ff-chip"><div class="n">15</div><div class="l">retargeting banners across 5 sizes and 3 audiences</div></div>
+      </div>
+      <div class="ff-btnrow ff-reveal">
+        <a class="ff-btn ff-btn--primary" href="https://gitteromri-ux.github.io/lla-growth-engine/" target="_blank" rel="noopener">
+          Open The Full Growth Engine
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOUCHPOINT GRID -->
+  <div class="ff-section ff-section--navy">
+    <div class="ff-mgrid"></div>
+    <div class="ff-wrap">
+      <p class="ff-stage">The touchpoint map</p>
+      <h2 class="ff-h2 ff-reveal">No one leaves the funnel without being followed for 7 days across email, Meta and Instagram.</h2>
+      <div class="ff-tpgrid-wrap ff-reveal">
+        <div class="ff-tpgrid">
+          <div class="ff-hd">Where they dropped off</div>
+          <div class="ff-hd">Day 0</div>
+          <div class="ff-hd">Day 1</div>
+          <div class="ff-hd">Day 2</div>
+          <div class="ff-hd">Day 3</div>
+          <div class="ff-hd">Day 4</div>
+          <div class="ff-hd">Day 5</div>
+          <div class="ff-hd">Day 6</div>
+          <div class="ff-hd">Day 7</div>
+          <div class="ff-hd">Total touches</div>
+
+          <div class="ff-rowlabel"><b>Dropped at Screen 1</b><span>Registered, no course chosen</span></div>
+          <div class="ff-cell"><span class="ff-tchip em">Email +45m</span><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip em">Email +24h</span><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip em">Email +72h</span><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-tgtot"><div class="big">10 touches</div><span>3 emails + 7 days of banners</span></div>
+
+          <div class="ff-rowlabel"><b>Dropped at Screen 2</b><span>Course chosen, no payment</span></div>
+          <div class="ff-cell"><span class="ff-tchip em">Email +30m</span><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip em">Email +48h</span><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-tgtot"><div class="big">9 touches</div><span>2 emails + 7 days of banners</span></div>
+
+          <div class="ff-rowlabel"><b>Dropped at Screen 3</b><span>Reached the payment page</span></div>
+          <div class="ff-cell"><span class="ff-tchip em">Email +20m</span><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip em">Email +24h</span><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-cell"><span class="ff-tchip em">Email +7d</span><span class="ff-tchip ps">Meta + IG</span></div>
+          <div class="ff-tgtot"><div class="big">10 touches</div><span>3 emails + 7 days of banners</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMAILS -->
+  <div class="ff-section ff-section--black">
+    <div class="ff-mgrid"></div>
+    <span class="ff-num ff-num--l">03</span>
+    <div class="ff-wrap">
+      <p class="ff-stage">The 8 recovery emails</p>
+      <h2 class="ff-h2 ff-reveal">Every email puts the $289 founder rate, the $360 published rate and the August 3 start date on the table.</h2>
+
+      <div class="ff-mailgrid">
+
+        <div class="ff-reveal">
+          <div class="ff-mailwin">
+            <div class="ff-mailchrome"><span></span><span></span><span></span><em>Inbox &rsaquo; Longevity Life Academy</em></div>
+            <div class="ff-mailmeta">
+              <p class="ff-from">From <b>Longevity Life Academy &lt;admissions@longevitylifeacademy.com&gt;</b></p>
+              <p class="ff-subj">Choose My Course</p>
+              <p class="ff-pre">$289 founder rate held for 48 hours. Then $360.</p>
+            </div>
+            <div class="ff-mailbody">
+              <span class="ff-badge">Registration Received, founder rate held for 48 hours</span>
+              <p class="ff-t">Sandra, your registration for The Longevity Blueprint came through 45 minutes ago. No course is selected against your name yet, so no seat has been assigned.</p>
+              <p class="ff-t">The price on the table is the founder rate, $289 a month against the published $360 a month, or $1,399 paid in full. That rate is held on your registration for the next 48 hours.</p>
+              <a class="ff-cta" href="https://www.longevitylifeacademy.com/store/longevity-blueprint/checkout.html" target="_blank" rel="noopener">Choose My Course</a>
+            </div>
+            <div class="ff-mailfoot">You received this because you subscribed at longevitylifeacademy.com</div>
+          </div>
+          <div class="ff-mailpurpose"><span><b>Segment A</b>, email 1 of 3, registered, no course chosen</span><span>Send +45 minutes</span></div>
+        </div>
+
+        <div class="ff-reveal">
+          <div class="ff-mailwin">
+            <div class="ff-mailchrome"><span></span><span></span><span></span><em>Inbox &rsaquo; Longevity Life Academy</em></div>
+            <div class="ff-mailmeta">
+              <p class="ff-from">From <b>Longevity Life Academy &lt;admissions@longevitylifeacademy.com&gt;</b></p>
+              <p class="ff-subj">Claim My Founder Rate</p>
+              <p class="ff-pre">$289 per month instead of $360. The hold closes in 24 hours.</p>
+            </div>
+            <div class="ff-mailbody">
+              <span class="ff-badge">Founder rate held, 24 hours left on this hold</span>
+              <p class="ff-t">The founder rate on your registration closes in 24 hours. After that the price on your account returns to the published $360 a month.</p>
+              <p class="ff-t">Choosing your course takes about a minute. Cohorts run 8 to 15 students, classes begin August 3, and the Abbott Lingo CGM ships free before Lesson 5.</p>
+              <a class="ff-cta" href="https://www.longevitylifeacademy.com/store/longevity-blueprint/checkout.html" target="_blank" rel="noopener">Claim My Founder Rate</a>
+            </div>
+            <div class="ff-mailfoot">You received this because you subscribed at longevitylifeacademy.com</div>
+          </div>
+          <div class="ff-mailpurpose"><span><b>Segment A</b>, email 2 of 3, registered, no course chosen</span><span>Send +24 hours</span></div>
+        </div>
+
+        <div class="ff-reveal">
+          <div class="ff-mailwin">
+            <div class="ff-mailchrome"><span></span><span></span><span></span><em>Inbox &rsaquo; Longevity Life Academy</em></div>
+            <div class="ff-mailmeta">
+              <p class="ff-from">From <b>Longevity Life Academy &lt;admissions@longevitylifeacademy.com&gt;</b></p>
+              <p class="ff-subj">Keep My Seat</p>
+              <p class="ff-pre">Last day at $289 per month. After today the rate returns to $360.</p>
+            </div>
+            <div class="ff-mailbody">
+              <span class="ff-badge">Final notice, last day at the founder rate</span>
+              <p class="ff-t">Today is the last day the $289 founder rate applies to your registration. From tomorrow the price returns to the published $360 a month.</p>
+              <p class="ff-t">Enrollment is fully refundable within 14 days and you keep the CGM regardless. Nothing is charged until you confirm.</p>
+              <a class="ff-cta" href="https://www.longevitylifeacademy.com/store/longevity-blueprint/checkout.html" target="_blank" rel="noopener">Keep My Seat</a>
+            </div>
+            <div class="ff-mailfoot">You received this because you subscribed at longevitylifeacademy.com</div>
+          </div>
+          <div class="ff-mailpurpose"><span><b>Segment A</b>, email 3 of 3, registered, no course chosen</span><span>Send +72 hours</span></div>
+        </div>
+
+        <div class="ff-reveal">
+          <div class="ff-mailwin">
+            <div class="ff-mailchrome"><span></span><span></span><span></span><em>Inbox &rsaquo; Longevity Life Academy</em></div>
+            <div class="ff-mailmeta">
+              <p class="ff-from">From <b>Longevity Life Academy &lt;admissions@longevitylifeacademy.com&gt;</b></p>
+              <p class="ff-subj">Resume My Enrollment</p>
+              <p class="ff-pre">$289 founder rate held for 48 hours. Then $360.</p>
+            </div>
+            <div class="ff-mailbody">
+              <span class="ff-badge">Course selected, payment not yet completed</span>
+              <p class="ff-t">Your course is chosen and your seat is being held. Payment has not gone through yet, and the $289 founder rate stays open on this order for 48 hours.</p>
+              <p class="ff-t">Finishing takes under two minutes. The Abbott Lingo CGM ships free and arrives before Lesson 5.</p>
+              <a class="ff-cta" href="https://www.longevitylifeacademy.com/store/longevity-blueprint/checkout.html" target="_blank" rel="noopener">Resume My Enrollment</a>
+            </div>
+            <div class="ff-mailfoot">You received this because you subscribed at longevitylifeacademy.com</div>
+          </div>
+          <div class="ff-mailpurpose"><span><b>Segment B</b>, email 1 of 2, course chosen, no payment</span><span>Send +30 minutes</span></div>
+        </div>
+
+        <div class="ff-reveal">
+          <div class="ff-mailwin">
+            <div class="ff-mailchrome"><span></span><span></span><span></span><em>Inbox &rsaquo; Longevity Life Academy</em></div>
+            <div class="ff-mailmeta">
+              <p class="ff-from">From <b>Longevity Life Academy &lt;admissions@longevitylifeacademy.com&gt;</b></p>
+              <p class="ff-subj">Hold My Rate</p>
+              <p class="ff-pre">The $289 hold ends tonight. After that the rate is $360 per month.</p>
+            </div>
+            <div class="ff-mailbody">
+              <span class="ff-badge">Hold ends tonight</span>
+              <p class="ff-t">The $289 founder rate on your chosen course ends tonight. From tomorrow the price on this order returns to the published $360 a month.</p>
+              <p class="ff-t">Confirm tonight to keep the rate, the CGM, and your place in the cohort beginning August 3.</p>
+              <a class="ff-cta" href="https://www.longevitylifeacademy.com/store/longevity-blueprint/checkout.html" target="_blank" rel="noopener">Hold My Rate</a>
+            </div>
+            <div class="ff-mailfoot">You received this because you subscribed at longevitylifeacademy.com</div>
+          </div>
+          <div class="ff-mailpurpose"><span><b>Segment B</b>, email 2 of 2, course chosen, no payment</span><span>Send +48 hours</span></div>
+        </div>
+
+        <div class="ff-reveal">
+          <div class="ff-mailwin">
+            <div class="ff-mailchrome"><span></span><span></span><span></span><em>Inbox &rsaquo; Longevity Life Academy</em></div>
+            <div class="ff-mailmeta">
+              <p class="ff-from">From <b>Longevity Life Academy &lt;admissions@longevitylifeacademy.com&gt;</b></p>
+              <p class="ff-subj">Finish My Payment</p>
+              <p class="ff-pre">Your order is already built. Payment takes under two minutes at $289.</p>
+            </div>
+            <div class="ff-mailbody">
+              <span class="ff-badge">Payment page reached, order not yet complete</span>
+              <p class="ff-t">Your order is already built at the payment page: The Longevity Blueprint, $289 a month, cohort beginning August 3.</p>
+              <p class="ff-t">Payment takes under two minutes and enrollment stays fully refundable within 14 days.</p>
+              <a class="ff-cta" href="https://www.longevitylifeacademy.com/store/longevity-blueprint/checkout.html" target="_blank" rel="noopener">Finish My Payment</a>
+            </div>
+            <div class="ff-mailfoot">You received this because you subscribed at longevitylifeacademy.com</div>
+          </div>
+          <div class="ff-mailpurpose"><span><b>Segment C</b>, email 1 of 3, reached the payment page</span><span>Send +20 minutes</span></div>
+        </div>
+
+        <div class="ff-reveal">
+          <div class="ff-mailwin">
+            <div class="ff-mailchrome"><span></span><span></span><span></span><em>Inbox &rsaquo; Longevity Life Academy</em></div>
+            <div class="ff-mailmeta">
+              <p class="ff-from">From <b>Longevity Life Academy &lt;admissions@longevitylifeacademy.com&gt;</b></p>
+              <p class="ff-subj">Complete My Enrollment</p>
+              <p class="ff-pre">$289 founder rate held for 48 hours. Then $360.</p>
+            </div>
+            <div class="ff-mailbody">
+              <span class="ff-badge">Founder rate held for 48 hours from the payment page</span>
+              <p class="ff-t">The order you built at checkout is still open, and the $289 founder rate is held on it for 48 hours from this email.</p>
+              <p class="ff-t">Complete payment now to lock the rate and start the cohort on August 3 with an assigned seat.</p>
+              <a class="ff-cta" href="https://www.longevitylifeacademy.com/store/longevity-blueprint/checkout.html" target="_blank" rel="noopener">Complete My Enrollment</a>
+            </div>
+            <div class="ff-mailfoot">You received this because you subscribed at longevitylifeacademy.com</div>
+          </div>
+          <div class="ff-mailpurpose"><span><b>Segment C</b>, email 2 of 3, reached the payment page</span><span>Send +24 hours</span></div>
+        </div>
+
+        <div class="ff-reveal">
+          <div class="ff-mailwin">
+            <div class="ff-mailchrome"><span></span><span></span><span></span><em>Inbox &rsaquo; Longevity Life Academy</em></div>
+            <div class="ff-mailmeta">
+              <p class="ff-from">From <b>Longevity Life Academy &lt;admissions@longevitylifeacademy.com&gt;</b></p>
+              <p class="ff-subj">Keep My Founder Rate</p>
+              <p class="ff-pre">Today is the last day at $289 per month. Tomorrow the rate is $360.</p>
+            </div>
+            <div class="ff-mailbody">
+              <span class="ff-badge">Last day at the founder rate</span>
+              <p class="ff-t">Today is the last day the $289 founder rate applies to the order you built at checkout. Tomorrow the price returns to the published $360 a month.</p>
+              <p class="ff-t">Pay today to keep the rate, the free CGM shipment before Lesson 5, and the 14 day enrollment guarantee.</p>
+              <a class="ff-cta" href="https://www.longevitylifeacademy.com/store/longevity-blueprint/checkout.html" target="_blank" rel="noopener">Keep My Founder Rate</a>
+            </div>
+            <div class="ff-mailfoot">You received this because you subscribed at longevitylifeacademy.com</div>
+          </div>
+          <div class="ff-mailpurpose"><span><b>Segment C</b>, email 3 of 3, reached the payment page</span><span>Send +7 days</span></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- BANNERS -->
+  <div class="ff-section ff-section--navy ff-bansec">
+    <div class="ff-mgrid"></div>
+    <div class="ff-wrap">
+      <p class="ff-stage">15 remarketing banners, 5 sizes, 3 audiences</p>
+      <h2 class="ff-h2 ff-reveal">Live from day 0, across Meta and Instagram, matched to how far each person got.</h2>
+
+      <div class="ff-audblock ff-reveal">
+        <h4>Audience 1, visited the site, never became a lead</h4>
+        <p class="ff-audline">5 sizes, running Day 0 to Day 7, led by the fact the academy owns: the instructor teaching this course is the second slowest-aging person on Earth.</p>
+        <div class="ff-bnrow">
+          <div class="ff-bn ff-bn--rect">
+            <div class="ff-bnsize">300 x 250, IAB medium rectangle</div>
+            <h5>2nd Slowest-Aging Person on Earth</h5>
+            <p>Learn her protocol, live. 18 live sessions, begins August 3.</p>
+            <span class="ff-bncta">Reserve My Seat</span>
+          </div>
+          <div class="ff-bn ff-bn--square">
+            <div class="ff-bnsize">1080 x 1080, Meta and Instagram feed</div>
+            <h5>Dr. Julie Gibson Clark, DunedinPACE 0.665</h5>
+            <p>Learn her protocol, live, for 18 weeks. Practicing physicians, begins August 3.</p>
+            <span class="ff-bncta">Reserve My Seat</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ff-audblock ff-reveal">
+        <h4>Audience 2, became a lead, never opened checkout</h4>
+        <p class="ff-audline">5 sizes, running Day 0 to Day 7, on the mechanism: six pillars, their own biomarkers, a free Abbott Lingo CGM by Lesson 5.</p>
+        <div class="ff-bnrow">
+          <div class="ff-bn ff-bn--rect">
+            <div class="ff-bnsize">300 x 250, IAB medium rectangle</div>
+            <h5>Six pillars. Your numbers.</h5>
+            <p>Built from your own biomarkers. Free Abbott Lingo CGM by Lesson 5.</p>
+            <span class="ff-bncta">Confirm My Place</span>
+          </div>
+          <div class="ff-bn ff-bn--wide">
+            <div class="ff-bnsize">728 x 90, leaderboard</div>
+            <h5>Your data, not a generic plan</h5>
+            <p>The Longevity Blueprint, $289 per month founder rate.</p>
+            <span class="ff-bncta">Confirm My Place</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ff-audblock ff-reveal">
+        <h4>Audience 3, reached the payment page, did not purchase</h4>
+        <p class="ff-audline">5 sizes, running Day 0 to Day 7, on price alone: $289 a month against the published $360, fully refundable within 14 days.</p>
+        <div class="ff-bnrow">
+          <div class="ff-bn ff-bn--rect">
+            <div class="ff-bnsize">300 x 250, IAB medium rectangle</div>
+            <h5>$289 per month, not $360</h5>
+            <p>Fully refundable within 14 days. Keep the CGM regardless.</p>
+            <span class="ff-bncta">Finish My Payment</span>
+          </div>
+          <div class="ff-bn ff-bn--square">
+            <div class="ff-bnsize">160 x 600, skyscraper</div>
+            <h5>Your order is already built</h5>
+            <p>$289 a month founder rate, held on your checkout.</p>
+            <span class="ff-bncta">Finish My Payment</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="ff-section ff-section--black">
+    <div class="ff-mgrid"></div>
+    <div class="ff-wrap">
+      <div class="ff-growthcta ff-reveal">
+        <div>
+          <h3>Every email, banner and touchpoint lives in one growth engine.</h3>
+          <p>232 creatives, 4 national press placements, and a 30 day attribution window, all built on the real $289 founder rate.</p>
+        </div>
+        <a class="ff-btn ff-btn--primary" href="https://gitteromri-ux.github.io/lla-growth-engine/" target="_blank" rel="noopener">
+          Open The Full Growth Engine
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+(function(){
+  var root = document.getElementById('tab-ecommerce-full-funnel');
+  if(!root || root.__ffWired) return;
+  root.__ffWired = true;
+  if(!('IntersectionObserver' in window)){
+    root.querySelectorAll('.ff-reveal').forEach(function(el){ el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  var ffRevealEls = root.querySelectorAll('.ff-reveal');
+  ffRevealEls.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){
+    ffRevealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }, 2600);
+})();
+</script>
+
+</div>
+</section>
+
+<section class="version" id="version-omri">
+  <p class="lead">Working notes and references for this project.</p>
+  <div id="panel-omri" class="panel">
+<section class="om-root" id="tab-omri" data-tab="omri">
+  <div class="om-grid" aria-hidden="true"></div>
+  <span class="om-numeral" aria-hidden="true">03</span>
+
+  <header class="om-head om-reveal">
+    <h2 class="om-title">The <em>Meta and Instagram</em> upload pack.</h2>
+    <p class="om-sub">Every resize of the 90 second cut, sized and labeled for its exact placement, with the ad copy ready to paste beside it.</p>
+  </header>
+
+  <div id="om-body-mount"></div>
+
+  <div class="om-section om-reveal">
+    <h3 class="om-copy-head">Ad copy</h3>
+    <p class="om-copy-sub">Pulled live from the shared copy file. Every variant below is exact production text.</p>
+    <div id="om-copy-mount" class="om-copy-groups"></div>
+  </div>
+
+  <template id="om-card-template">
+    <div class="om-card om-reveal">
+      <div class="om-card-frame">
+        <video controls preload="metadata" playsinline muted></video>
+      </div>
+      <p class="om-card-placement"></p>
+      <p class="om-card-dims"></p>
+      <p class="om-card-specs"></p>
+      <p class="om-card-safe"></p>
+      <a class="om-dl" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+        Download MP4
+      </a>
+    </div>
+  </template>
+</section>
+
+<script>
+(function(){
+  function bytesToSize(bytes){
+    if (!bytes) return '';
+    var mb = bytes / (1024*1024);
+    return mb >= 1000 ? (mb/1024).toFixed(2) + ' GB' : mb.toFixed(1) + ' MB';
+  }
+  function fmtDuration(sec){
+    if (!sec && sec !== 0) return '';
+    var m = Math.floor(sec/60), s = Math.round(sec%60);
+    return m + ':' + String(s).padStart(2,'0');
+  }
+  function aspectPad(w,h){
+    return (h / w * 100).toFixed(4) + '%';
+  }
+
+  function buildTalentGrid(name, items){
+    var section = document.createElement('div');
+    section.className = 'om-section om-reveal';
+    var head = document.createElement('div');
+    head.className = 'om-talent-head';
+    head.innerHTML = '<h3 class="om-talent-name">' + name + '</h3><span class="om-talent-count">' + items.length + ' size' + (items.length === 1 ? '' : 's') + ' ready</span>';
+    section.appendChild(head);
+
+    if (!items.length){
+      var note = document.createElement('p');
+      note.className = 'om-empty-note';
+      note.textContent = 'No resized files for ' + name + ' exist in the render pipeline yet. This grid is wired to window.LLA_MEDIA.omri.' + name.toLowerCase() + ' and will fill in automatically as renders land.';
+      section.appendChild(note);
+      return section;
+    }
+
+    var grid = document.createElement('div');
+    grid.className = 'om-cardgrid';
+    var tpl = document.getElementById('om-card-template');
+
+    items.forEach(function(item){
+      var node = tpl.content.cloneNode(true);
+      var frame = node.querySelector('.om-card-frame');
+      frame.style.aspectRatio = item.w + ' / ' + item.h;
+      var maxW = item.w >= item.h ? '100%' : '260px';
+      frame.style.maxWidth = maxW;
+      frame.style.margin = '0 auto';
+      var video = node.querySelector('video');
+      video.src = item.src;
+      video.poster = item.poster || '';
+      video.width = item.w;
+      video.height = item.h;
+      node.querySelector('.om-card-placement').textContent = item.placement;
+      node.querySelector('.om-card-dims').textContent = item.label;
+      node.querySelector('.om-card-specs').innerHTML =
+        fmtDuration(item.duration) + ' &middot; ' + bytesToSize(item.bytes) + ' &middot; ' + (item.codec || '') + ' &middot; ' + (item.audio || '');
+      node.querySelector('.om-card-safe').textContent = item.safeZone || '';
+      var dl = node.querySelector('.om-dl');
+      dl.href = item.src;
+      dl.setAttribute('download', item.filename || item.label);
+      grid.appendChild(node);
+    });
+
+    section.appendChild(grid);
+    return section;
+  }
+
+  function renderGrids(){
+    var media = (window.LLA_MEDIA && window.LLA_MEDIA.omri) || { julie: [], courtney: [] };
+    var mount = document.getElementById('om-body-mount');
+    if (!mount) return;
+    mount.appendChild(buildTalentGrid('Julie', media.julie || []));
+    mount.appendChild(buildTalentGrid('Courtney', media.courtney || []));
+  }
+
+  function copyToClipboard(text, btn){
+    function done(ok){
+      if (!ok) return;
+      var original = btn.textContent;
+      btn.textContent = 'Copied';
+      btn.classList.add('om-copied');
+      setTimeout(function(){
+        btn.textContent = original;
+        btn.classList.remove('om-copied');
+      }, 1800);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ done(true); }).catch(function(){
+        fallbackCopy(text, done);
+      });
+    } else {
+      fallbackCopy(text, done);
+    }
+  }
+
+  function fallbackCopy(text, cb){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch(e){ ok = false; }
+    document.body.removeChild(ta);
+    cb(ok);
+  }
+
+  function labelForCat(cat){
+    var map = {
+      primary: 'Primary copy',
+      headline: 'Headline',
+      description: 'Description',
+      ig_feed: 'Instagram feed, long form',
+      ig_reels: 'Instagram Reels caption'
+    };
+    return map[cat] || cat;
+  }
+
+  function renderCopyBlock(){
+    var mount = document.getElementById('om-copy-mount');
+    if (!mount) return;
+    var data = window.LLA_ADCOPY;
+    if (!data){
+      mount.innerHTML = '<p class="om-empty-note">Ad copy loads automatically from the shared copy file once it is available.</p>';
+      return;
+    }
+    mount.innerHTML = '';
+    Object.keys(data).forEach(function(talentKey){
+      var talent = data[talentKey];
+      var block = document.createElement('div');
+      var label = talentKey.charAt(0).toUpperCase() + talentKey.slice(1);
+      block.innerHTML = '<p class="om-copy-talent-label">' + label + '</p>';
+
+      ['primary','headline','description','ig_feed','ig_reels'].forEach(function(cat){
+        var entry = talent[cat];
+        if (!entry) return;
+        var list = Array.isArray(entry) ? entry : [entry];
+        var catHeader = document.createElement('p');
+        catHeader.className = 'om-copy-cat';
+        catHeader.textContent = labelForCat(cat);
+        block.appendChild(catHeader);
+        list.forEach(function(variant){
+          var card = document.createElement('div');
+          card.className = 'om-copy-card';
+          var textEl = document.createElement('p');
+          textEl.className = 'om-copy-text';
+          textEl.textContent = variant.text;
+          var foot = document.createElement('div');
+          foot.className = 'om-copy-foot';
+          var chars = document.createElement('span');
+          chars.className = 'om-copy-chars';
+          chars.textContent = (variant.chars != null ? variant.chars : variant.text.length) + ' characters';
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'om-copy-btn';
+          btn.textContent = 'Copy';
+          btn.addEventListener('click', function(){ copyToClipboard(variant.text, btn); });
+          foot.appendChild(chars);
+          foot.appendChild(btn);
+          card.appendChild(textEl);
+          card.appendChild(foot);
+          block.appendChild(card);
+        });
+      });
+
+      if (talent.hashtags){
+        var hz = document.createElement('p');
+        hz.className = 'om-hashtags';
+        hz.textContent = talent.hashtags;
+        block.appendChild(hz);
+      }
+
+      mount.appendChild(block);
+    });
+  }
+
+  function revealAll(){
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('#tab-omri .om-reveal');
+    if (reduceMotion || !('IntersectionObserver' in window)){
+      targets.forEach(function(t){ t.classList.add('om-in'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            entry.target.classList.add('om-in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      targets.forEach(function(t){ io.observe(t); });
+    }
+  }
+
+  function init(){
+    renderGrids();
+    renderCopyBlock();
+    revealAll();
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  window.addEventListener('lla-adcopy-loaded', function(){
+    renderCopyBlock();
+    revealAll();
+  });
+})();
+</script>
+
+</div>
 </section>
 
 <div class="lightbox" id="lightbox">
@@ -172,7 +1352,7 @@ const manifest = {"v1": [{"id": "v1_b1", "title": "Make It Automatic", "sizes": 
               <div class="dim">${s.w} × ${s.h}</div>
             </div>
             <div class="size-preview">
-              <img src="${src}" alt="${b.title} — ${s.label}" loading="lazy"
+              <img src="${src}" alt="${b.title}, ${s.label}" loading="lazy"
                    data-full="${src}" data-title="${b.title}" data-size="${s.label} · ${s.w}×${s.h}">
             </div>
             <div class="size-note">${s.note}</div>
@@ -221,6 +1401,11 @@ document.querySelectorAll('.tab').forEach(t => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
+</script>
+<script>document.documentElement.classList.add('js-reveal-ready');
+window.addEventListener('load',function(){setTimeout(function(){
+ document.querySelectorAll('.om-reveal,.jv-reveal,.cv-reveal,.sf-reveal,.ff-reveal').forEach(function(e){
+   var r=e.getBoundingClientRect(); if(r.top<window.innerHeight*1.2){e.classList.add('om-in','jv-in','cv-in','is-visible');}});},400);});
 </script>
 </body>
 </html>

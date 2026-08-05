@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video tabs preview</title>
+<link rel="stylesheet" href="tabs_video.css">
+<style>
+  body{ margin:0; background:#05060A; }
+  .tabbar{ position:sticky; top:0; z-index:50; display:flex; gap:8px; padding:14px 20px; background:#05060A; border-bottom:1px solid rgba(94,182,255,0.16); }
+  .tabbar button{ background:rgba(13,23,48,0.7); color:#F4F7FC; border:1px solid rgba(94,182,255,0.25); border-radius:999px; padding:8px 18px; font-family:'Inter Tight',sans-serif; cursor:pointer; }
+  .tabbar button.active{ background:#006EFF; }
+  .tabpanel{ display:none; }
+  .tabpanel.active{ display:block; }
+</style>
+</head>
+<body>
+<div class="tabbar">
+  <button data-target="panel-julie" class="active">Julie</button>
+  <button data-target="panel-courtney">Courtney</button>
+  <button data-target="panel-omri">Omri</button>
+</div>
+<div id="panel-julie" class="tabpanel active"></div>
+<div id="panel-courtney" class="tabpanel"></div>
+<div id="panel-omri" class="tabpanel"></div>
+
+<script src="video_manifest.js"></script>
+<script>
+  function loadFragment(url, targetId){
+    return fetch(url).then(r => r.text()).then(html => {
+      document.getElementById(targetId).innerHTML = html;
+      var container = document.getElementById(targetId);
+      var scripts = container.querySelectorAll('script');
+      scripts.forEach(function(oldScript){
+        var newScript = document.createElement('script');
+        if (oldScript.src){
+          newScript.src = oldScript.src;
+        } else {
+          newScript.textContent = oldScript.textContent;
+        }
+        oldScript.parentNode.replaceChild(newScript, oldScript);
+      });
+    });
+  }
+  Promise.all([
+    loadFragment('tab_julie.html', 'panel-julie'),
+    loadFragment('tab_courtney.html', 'panel-courtney'),
+    loadFragment('tab_omri.html', 'panel-omri')
+  ]).then(() => {
+    document.querySelectorAll('.tabbar button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tabbar button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tabpanel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
+    });
+  });
+</script>
+</body>
+</html>

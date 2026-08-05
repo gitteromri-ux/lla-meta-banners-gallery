@@ -1,0 +1,173 @@
+<section class="cv-root" id="tab-courtney" data-tab="courtney">
+  <div class="cv-grid" aria-hidden="true"></div>
+  <span class="cv-numeral" aria-hidden="true">02</span>
+
+  <header class="cv-head cv-reveal">
+    <h2 class="cv-title">Courtney, the <em>master</em> and the 90 second cut.</h2>
+    <p class="cv-sub">Both edits, both storyboards, one page. Every number below is read from the file itself, not typed in by hand.</p>
+  </header>
+
+  <div id="cv-stats-mount" class="cv-stats cv-reveal"></div>
+
+  <div id="cv-body-mount"></div>
+
+  <template id="cv-cut-template">
+    <div class="cv-cut cv-reveal">
+      <p class="cv-cut-label"></p>
+      <div class="cv-stage">
+        <div class="cv-player-wrap">
+          <div class="cv-player-inner">
+            <video class="cv-video" controls preload="metadata" playsinline></video>
+          </div>
+        </div>
+        <p class="cv-specline"></p>
+        <div class="cv-dl-row">
+          <a class="cv-dl" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+            Download master file
+          </a>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="cv-board-card-template">
+    <div class="cv-board-card cv-reveal">
+      <p class="cv-board-title"></p>
+      <p class="cv-board-meta"></p>
+      <object class="cv-board-frame" type="application/pdf">
+        <iframe class="cv-board-frame" title="Storyboard preview"></iframe>
+      </object>
+      <div class="cv-board-actions">
+        <a class="cv-dl" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+          Download storyboard PDF
+        </a>
+      </div>
+    </div>
+  </template>
+</section>
+
+<script>
+(function(){
+  function bytesToSize(bytes){
+    if (!bytes) return '';
+    var mb = bytes / (1024*1024);
+    return mb >= 1000 ? (mb/1024).toFixed(2) + ' GB' : mb.toFixed(1) + ' MB';
+  }
+  function fmtDuration(sec){
+    if (!sec && sec !== 0) return '';
+    var m = Math.floor(sec/60), s = Math.round(sec%60);
+    return m + ':' + String(s).padStart(2,'0');
+  }
+
+  function render(){
+    var data = (window.LLA_MEDIA && window.LLA_MEDIA.courtney) || { cuts: [], storyboards: [] };
+    var statsMount = document.getElementById('cv-stats-mount');
+    var bodyMount = document.getElementById('cv-body-mount');
+    if (!statsMount || !bodyMount) return;
+
+    var cuts = data.cuts || [];
+    var boards = data.storyboards || [];
+
+    if (cuts.length === 0){
+      statsMount.innerHTML = '';
+      var empty = document.createElement('div');
+      empty.className = 'cv-empty cv-reveal';
+      empty.innerHTML = '<p class="cv-empty-title">No cuts in the manifest yet</p><p class="cv-empty-sub">This tab is fully wired to window.LLA_MEDIA.courtney and renders whatever is listed there.</p>';
+      bodyMount.appendChild(empty);
+    } else {
+      var primary = cuts[0];
+      statsMount.innerHTML =
+        '<div class="cv-chip"><span class="cv-chip-num">' + fmtDuration(primary.duration) + '</span><span class="cv-chip-label">Runtime</span></div>' +
+        '<div class="cv-chip"><span class="cv-chip-num">' + primary.w + '&times;' + primary.h + '</span><span class="cv-chip-label">Resolution</span></div>' +
+        '<div class="cv-chip"><span class="cv-chip-num">' + (primary.fps || '') + ' fps</span><span class="cv-chip-label">Frame rate</span></div>' +
+        '<div class="cv-chip"><span class="cv-chip-num">' + bytesToSize(primary.bytes) + '</span><span class="cv-chip-label">File size</span></div>';
+
+      var cutsWrap = document.createElement('div');
+      cutsWrap.className = 'cv-cuts';
+      var cutTpl = document.getElementById('cv-cut-template');
+
+      cuts.forEach(function(cut){
+        var node = cutTpl.content.cloneNode(true);
+        node.querySelector('.cv-cut-label').textContent = cut.label;
+        var video = node.querySelector('.cv-video');
+        video.src = cut.src;
+        video.poster = cut.poster || '';
+        video.width = cut.w;
+        video.height = cut.h;
+        var specline = node.querySelector('.cv-specline');
+        specline.innerHTML =
+          '<span>' + fmtDuration(cut.duration) + '</span><span class="cv-dot">&middot;</span>' +
+          '<span>' + cut.w + '&times;' + cut.h + '</span><span class="cv-dot">&middot;</span>' +
+          '<span>' + (cut.fps || '') + ' fps</span><span class="cv-dot">&middot;</span>' +
+          '<span>' + (cut.audio || '') + '</span><span class="cv-dot">&middot;</span>' +
+          '<span>' + bytesToSize(cut.bytes) + '</span>';
+        var dl = node.querySelector('.cv-dl');
+        dl.href = cut.src;
+        dl.setAttribute('download', cut.filename || cut.label);
+        cutsWrap.appendChild(node);
+      });
+      bodyMount.appendChild(cutsWrap);
+
+      if (boards.length){
+        var boardsSection = document.createElement('div');
+        boardsSection.className = 'cv-boards';
+        boardsSection.innerHTML = '<h3 class="cv-boards-head cv-reveal">Storyboards</h3><p class="cv-boards-sub cv-reveal">Full frame by frame breakdown for both edits.</p>';
+        var grid = document.createElement('div');
+        grid.className = 'cv-board-grid';
+        var boardTpl = document.getElementById('cv-board-card-template');
+        boards.forEach(function(b){
+          var node = boardTpl.content.cloneNode(true);
+          node.querySelector('.cv-board-title').textContent = b.label;
+          node.querySelector('.cv-board-meta').textContent = (b.pages ? b.pages + ' pages' : '') + (b.bytes ? ' \u00b7 ' + bytesToSize(b.bytes) : '');
+          var obj = node.querySelector('object.cv-board-frame');
+          obj.data = b.src;
+          var iframe = node.querySelector('iframe.cv-board-frame');
+          iframe.src = b.src;
+          var dl = node.querySelector('.cv-dl');
+          dl.href = b.src;
+          dl.setAttribute('download', b.filename || b.label);
+          grid.appendChild(node);
+        });
+        boardsSection.appendChild(grid);
+        bodyMount.appendChild(boardsSection);
+      }
+
+      if (data.proof){
+        var proofSection = document.createElement('div');
+        proofSection.className = 'cv-boards';
+        proofSection.innerHTML = '<h3 class="cv-boards-head cv-reveal">Lipsync proof</h3>' +
+          '<div class="cv-board-card cv-reveal" style="max-width:900px;margin:0 auto;">' +
+          '<img src="' + data.proof.src + '" alt="' + data.proof.label + '" style="width:100%;height:auto;border-radius:12px;display:block;">' +
+          '<div class="cv-board-actions"><a class="cv-dl" href="' + data.proof.src + '" download="' + data.proof.filename + '">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>' +
+          'Download proof image</a></div></div>';
+        bodyMount.appendChild(proofSection);
+      }
+    }
+
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('#tab-courtney .cv-reveal');
+    if (reduceMotion || !('IntersectionObserver' in window)){
+      targets.forEach(function(t){ t.classList.add('cv-in'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            entry.target.classList.add('cv-in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      targets.forEach(function(t){ io.observe(t); });
+    }
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', render);
+  } else {
+    render();
+  }
+})();
+</script>

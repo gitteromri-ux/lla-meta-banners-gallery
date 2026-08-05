@@ -1,0 +1,244 @@
+<section class="om-root" id="tab-omri" data-tab="omri">
+  <div class="om-grid" aria-hidden="true"></div>
+  <span class="om-numeral" aria-hidden="true">03</span>
+
+  <header class="om-head om-reveal">
+    <h2 class="om-title">The <em>Meta and Instagram</em> upload pack.</h2>
+    <p class="om-sub">Every resize of the 90 second cut, sized and labeled for its exact placement, with the ad copy ready to paste beside it.</p>
+  </header>
+
+  <div id="om-body-mount"></div>
+
+  <div class="om-section om-reveal">
+    <h3 class="om-copy-head">Ad copy</h3>
+    <p class="om-copy-sub">Pulled live from the shared copy file. Every variant below is exact production text.</p>
+    <div id="om-copy-mount" class="om-copy-groups"></div>
+  </div>
+
+  <template id="om-card-template">
+    <div class="om-card om-reveal">
+      <div class="om-card-frame">
+        <video controls preload="metadata" playsinline muted></video>
+      </div>
+      <p class="om-card-placement"></p>
+      <p class="om-card-dims"></p>
+      <p class="om-card-specs"></p>
+      <p class="om-card-safe"></p>
+      <a class="om-dl" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+        Download MP4
+      </a>
+    </div>
+  </template>
+</section>
+
+<script src="ad_copy_loader.js"></script>
+<script>
+(function(){
+  function bytesToSize(bytes){
+    if (!bytes) return '';
+    var mb = bytes / (1024*1024);
+    return mb >= 1000 ? (mb/1024).toFixed(2) + ' GB' : mb.toFixed(1) + ' MB';
+  }
+  function fmtDuration(sec){
+    if (!sec && sec !== 0) return '';
+    var m = Math.floor(sec/60), s = Math.round(sec%60);
+    return m + ':' + String(s).padStart(2,'0');
+  }
+  function aspectPad(w,h){
+    return (h / w * 100).toFixed(4) + '%';
+  }
+
+  function buildTalentGrid(name, items){
+    var section = document.createElement('div');
+    section.className = 'om-section om-reveal';
+    var head = document.createElement('div');
+    head.className = 'om-talent-head';
+    head.innerHTML = '<h3 class="om-talent-name">' + name + '</h3><span class="om-talent-count">' + items.length + ' size' + (items.length === 1 ? '' : 's') + ' ready</span>';
+    section.appendChild(head);
+
+    if (!items.length){
+      var note = document.createElement('p');
+      note.className = 'om-empty-note';
+      note.textContent = 'No resized files for ' + name + ' exist in the render pipeline yet. This grid is wired to window.LLA_MEDIA.omri.' + name.toLowerCase() + ' and will fill in automatically as renders land.';
+      section.appendChild(note);
+      return section;
+    }
+
+    var grid = document.createElement('div');
+    grid.className = 'om-cardgrid';
+    var tpl = document.getElementById('om-card-template');
+
+    items.forEach(function(item){
+      var node = tpl.content.cloneNode(true);
+      var frame = node.querySelector('.om-card-frame');
+      frame.style.aspectRatio = item.w + ' / ' + item.h;
+      var maxW = item.w >= item.h ? '100%' : '260px';
+      frame.style.maxWidth = maxW;
+      frame.style.margin = '0 auto';
+      var video = node.querySelector('video');
+      video.src = item.src;
+      video.poster = item.poster || '';
+      video.width = item.w;
+      video.height = item.h;
+      node.querySelector('.om-card-placement').textContent = item.placement;
+      node.querySelector('.om-card-dims').textContent = item.label;
+      node.querySelector('.om-card-specs').innerHTML =
+        fmtDuration(item.duration) + ' &middot; ' + bytesToSize(item.bytes) + ' &middot; ' + (item.codec || '') + ' &middot; ' + (item.audio || '');
+      node.querySelector('.om-card-safe').textContent = item.safeZone || '';
+      var dl = node.querySelector('.om-dl');
+      dl.href = item.src;
+      dl.setAttribute('download', item.filename || item.label);
+      grid.appendChild(node);
+    });
+
+    section.appendChild(grid);
+    return section;
+  }
+
+  function renderGrids(){
+    var media = (window.LLA_MEDIA && window.LLA_MEDIA.omri) || { julie: [], courtney: [] };
+    var mount = document.getElementById('om-body-mount');
+    if (!mount) return;
+    mount.appendChild(buildTalentGrid('Julie', media.julie || []));
+    mount.appendChild(buildTalentGrid('Courtney', media.courtney || []));
+  }
+
+  function copyToClipboard(text, btn){
+    function done(ok){
+      if (!ok) return;
+      var original = btn.textContent;
+      btn.textContent = 'Copied';
+      btn.classList.add('om-copied');
+      setTimeout(function(){
+        btn.textContent = original;
+        btn.classList.remove('om-copied');
+      }, 1800);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ done(true); }).catch(function(){
+        fallbackCopy(text, done);
+      });
+    } else {
+      fallbackCopy(text, done);
+    }
+  }
+
+  function fallbackCopy(text, cb){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch(e){ ok = false; }
+    document.body.removeChild(ta);
+    cb(ok);
+  }
+
+  function labelForCat(cat){
+    var map = {
+      primary: 'Primary copy',
+      headline: 'Headline',
+      description: 'Description',
+      ig_feed: 'Instagram feed, long form',
+      ig_reels: 'Instagram Reels caption'
+    };
+    return map[cat] || cat;
+  }
+
+  function renderCopyBlock(){
+    var mount = document.getElementById('om-copy-mount');
+    if (!mount) return;
+    var data = window.LLA_ADCOPY;
+    if (!data){
+      mount.innerHTML = '<p class="om-empty-note">Ad copy loads automatically from the shared copy file once it is available.</p>';
+      return;
+    }
+    mount.innerHTML = '';
+    Object.keys(data).forEach(function(talentKey){
+      var talent = data[talentKey];
+      var block = document.createElement('div');
+      var label = talentKey.charAt(0).toUpperCase() + talentKey.slice(1);
+      block.innerHTML = '<p class="om-copy-talent-label">' + label + '</p>';
+
+      ['primary','headline','description','ig_feed','ig_reels'].forEach(function(cat){
+        var entry = talent[cat];
+        if (!entry) return;
+        var list = Array.isArray(entry) ? entry : [entry];
+        var catHeader = document.createElement('p');
+        catHeader.className = 'om-copy-cat';
+        catHeader.textContent = labelForCat(cat);
+        block.appendChild(catHeader);
+        list.forEach(function(variant){
+          var card = document.createElement('div');
+          card.className = 'om-copy-card';
+          var textEl = document.createElement('p');
+          textEl.className = 'om-copy-text';
+          textEl.textContent = variant.text;
+          var foot = document.createElement('div');
+          foot.className = 'om-copy-foot';
+          var chars = document.createElement('span');
+          chars.className = 'om-copy-chars';
+          chars.textContent = (variant.chars != null ? variant.chars : variant.text.length) + ' characters';
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'om-copy-btn';
+          btn.textContent = 'Copy';
+          btn.addEventListener('click', function(){ copyToClipboard(variant.text, btn); });
+          foot.appendChild(chars);
+          foot.appendChild(btn);
+          card.appendChild(textEl);
+          card.appendChild(foot);
+          block.appendChild(card);
+        });
+      });
+
+      if (talent.hashtags){
+        var hz = document.createElement('p');
+        hz.className = 'om-hashtags';
+        hz.textContent = talent.hashtags;
+        block.appendChild(hz);
+      }
+
+      mount.appendChild(block);
+    });
+  }
+
+  function revealAll(){
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('#tab-omri .om-reveal');
+    if (reduceMotion || !('IntersectionObserver' in window)){
+      targets.forEach(function(t){ t.classList.add('om-in'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            entry.target.classList.add('om-in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      targets.forEach(function(t){ io.observe(t); });
+    }
+  }
+
+  function init(){
+    renderGrids();
+    renderCopyBlock();
+    revealAll();
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  window.addEventListener('lla-adcopy-loaded', function(){
+    renderCopyBlock();
+    revealAll();
+  });
+})();
+</script>
