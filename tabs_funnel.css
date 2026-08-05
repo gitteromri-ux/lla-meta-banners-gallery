@@ -549,3 +549,13 @@
 .js-reveal-ready .sf-reveal:not(.is-visible),
 .js-reveal-ready .ff-reveal:not(.is-visible) { opacity: 0; transform: translateY(18px); }
 .is-visible { opacity: 1 !important; transform: none !important; transition: opacity .7s ease, transform .7s ease; }
+
+/* Real page capture sits behind the live frame, so the frame is never empty */
+.sf-scrollframe{
+  background-image: url("media/site/store_desktop.png");
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-color: #0A1428;
+}
+.sf-scrollframe iframe{ position: relative; z-index: 1; }

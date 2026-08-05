@@ -578,3 +578,13 @@
 .js-reveal-ready .jv-reveal:not(.jv-in),
 .js-reveal-ready .cv-reveal:not(.cv-in) { opacity: 0; transform: translateY(18px); }
 .om-in, .jv-in, .cv-in { opacity: 1 !important; transform: none !important; transition: opacity .7s ease, transform .7s ease; }
+
+/* Storyboard page one renders as an image so the panel is never blank */
+.cv-board-frame{
+  background-color: #0A1428;
+  background-size: contain;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+.cv-board-card:nth-of-type(1) .cv-board-frame{ background-image: url("media/courtney/storyboard_101s_p1.jpg"); }
+.cv-board-card:nth-of-type(2) .cv-board-frame{ background-image: url("media/courtney/storyboard_95s_p1.jpg"); }
